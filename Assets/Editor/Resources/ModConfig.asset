@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
+  m_Name: ModConfig
+  m_EditorClassIdentifier: 
+  id: KTaNE 2
+  title: Vanilla Swirls
+  author: Speakingevil
+  description: 'Whoopsadoodle! There was a mix up at the bomb factory. We made the
+    modules waaay too big and the LEDs b-b-b-b-blue!?
+
+
+    Vanilla modules that have been combined.'
+  version: 1.0
+  outputFolder: build
+  previewImage: {fileID: 2800000, guid: 61276bc49375f614fbb8fe0d67fd9ce3, type: 3}

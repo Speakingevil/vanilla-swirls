@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Discharge Maze — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/ktane-utils.js"></script>
+    <style>
+        table {
+            float: left;
+            width: 65%;
+            table-layout: fixed;
+            margin-bottom: 10px;
+            font-size: 12px;
+            border:none;
+        }
+        th{
+            padding: 0px;
+            height:22px;
+        }
+        th:after{       
+            display: block;
+            margin-top: 100%;
+        }
+        th.ne {
+            border-top: 0.5mm dotted black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 1.0mm solid black;
+            border-left: 1.0mm solid black;
+        }
+        th.ns {
+            border-top: 0.5mm dotted black;
+            border-right: 1.0mm solid black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 1.0mm solid black;
+        }
+        th.nw {
+            border-top: 0.5mm dotted black;
+            border-right: 1.0mm solid black;
+            border-bottom: 1.0mm solid black;
+            border-left: 0.5mm dotted black;
+        }
+        th.es {
+            border-top: 1.0mm solid black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 1.0mm solid black;
+        }
+        th.ew {
+            border-top: 1.0mm solid black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 1.0mm solid black;
+            border-left: 0.5mm dotted black;
+        }
+        th.sw {
+            border-top: 1.0mm solid black;
+            border-right: 1.0mm solid black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 0.5mm dotted black;
+        }
+        th.nes {
+            border-top: 0.5mm dotted black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 1.0mm solid black;
+        }
+        th.new {
+            border-top: 0.5mm dotted black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 1.0mm solid black;
+            border-left: 0.5mm dotted black;
+        }
+        th.nsw {
+            border-top: 0.5mm dotted black;
+            border-right: 1.0mm solid black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 0.5mm dotted black;
+        }
+        th.esw {
+            border-top: 1.0mm solid black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 0.5mm dotted black;
+        }
+        th.nesw {
+            border-top: 0.5mm dotted black;
+            border-right: 0.5mm dotted black;
+            border-bottom: 0.5mm dotted black;
+            border-left: 0.5mm dotted black;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Discharge Maze</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Discharge Maze.svg" class="diagram">
+                <h2>On the Subject of Discharge Mazes</h2>
+                <p class="flavour-text">This seems to be some kind of maze, because otherwise this is some shoddy electronics work.</p>       
+            <ul style="font-size:15px"><li>Find the 7&#x00d7;7 region of the maze with matching circular markings.<br>The maze may be rotated by a multiple of 90&deg;.</li>
+            <li>Flipping the switch will activate the module, turning on one of the lights in the maze and charging the capacitor by 10% per second.</li>
+            <li>Holding down a lever discharges the capacitor by 10% per second and releasing it moves the light in its direction.</li>
+            <li>With each move, the charge is measured. Each pair of consecutive measurements must meet the condition according to the colour of the fluid in the gauge.</li>
+            <li>The defuser must navigate the light out of the region, crossing the edge in the direction matching its colour.</li>
+            <li><strong>Warning:</strong> <ul style="font-size:14px"><li>Do not cross the solid lines in the maze, all lines are invisible on the module.</li>
+            <li>Do not allow the capacitor to overload or fully deplete while active.</li></ul></li></ul>
+            <table>
+            <tr><td style="border:none"></td><td style="border:none; background-color:#005fff; height:20px" colspan = 15></td><td style="border:none"></td></tr>
+            <tr><td style="border:none; background-color:#ff0000" rowspan = 15></td><th class=sw></th><th class=es></th><th class=esw></th><th class=nw></th><th class=es></th><th class=ew></th><th class=new></th><th class=sw></th><th class=es></th><th class=esw></th><th class=nw></th><th class=ne>&#x25ef;</th><th class=esw></th><th class=sw></th><th class=ns></th><td style="border:none; background-color:#f5ea00" rowspan = 15></td></tr>
+            <tr><th class=ne></th><th class=nsw></th><th class=ns>&#x25ef;</th><th class=es></th><th class=nsw></th><th class=es></th><th class=sw></th><th class=ne></th><th class=nw></th><th class=ns></th><th class=es></th><th class=esw></th><th class=nw></th><th class=ns></th><th class=ns></th></tr>
+            <tr><th class=es></th><th class=nw></th><th class=ns></th><th class=ns></th><th class=ne></th><th class=nsw></th><th class=ne></th><th class=ew></th><th class=sw></th><th class=nes>&#x25ef;</th><th class=nw></th><th class=ns></th><th class=es></th><th class=new></th><th class=nw></th></tr>
+            <tr><th class=nes></th><th class=sw></th><th class=ne></th><th class=new></th><th class=sw></th><th class=ns>&#x25ef;</th><th class=es></th><th class=ew></th><th class=new></th><th class=nsw></th><th class=es></th><th class=nsw></th><th class=ne></th><th class=ew></th><th class=esw>&#x25ef;</th></tr>
+            <tr><th class=ns></th><th class=nes></th><th class=ew></th><th class=esw></th><th class=nw></th><th class=nes></th><th class=nw></th><th class=es></th><th class=esw></th><th class=nw></th><th class=ns></th><th class=ne></th><th class=ew></th><th class=ew></th><th class=nw></th></tr>
+            <tr><th class=nw></th><th class=ns></th><th class=es></th><th class=nw></th><th class=es></th><th class=nw></th><th class=es></th><th class=nsw></th><th class=ne></th><th class=sw></th><th class=nes></th><th class=ew></th><th class=ew></th><th class=sw></th><th class=es></th></tr>
+            <tr><th class=es></th><th class=nw></th><th class=ne></th><th class=ew></th><th class=nesw>&#x25ef;</th><th class=ew></th><th class=nw></th><th class=ne></th><th class=sw></th><th class=nes></th><th class=nw></th><th class=es></th><th class=ew></th><th class=new></th><th class=nw></th></tr>
+            <tr><th class=ne>&#x25ef;</th><th class=ew></th><th class=sw></th><th class=es></th><th class=nsw></th><th class=es></th><th class=ew></th><th class=ew></th><th class=nsw></th><th class=ns></th><th class=es></th><th class=nsw></th><th class=es>&#x25ef;</th><th class=ew></th><th class=sw></th></tr>          
+            <tr><th class=ew></th><th class=esw></th><th class=new></th><th class=nw></th><th class=ns></th><th class=nes></th><th class=sw></th><th class=es></th><th class=nsw>&#x25ef;</th><th class=nes></th><th class=nsw></th><th class=ns></th><th class=nes></th><th class=sw></th><th class=ns></th></tr>
+            <tr><th class=es></th><th class=new></th><th class=ew></th><th class=sw></th><th class=ne></th><th class=nw></th><th class=ns></th><th class=ns></th><th class=ne></th><th class=nw></th><th class=ns></th><th class=ne></th><th class=nw></th><th class=ns></th><th class=ne></th></tr>
+            <tr><th class=ne></th><th class=sw></th><th class=se></th><th class=new>&#x25ef;</th><th class=ew></th><th class=esw></th><th class=nw></th><th class=ns></th><th class=es></th><th class=ew></th><th class=new></th><th class=sw></th><th class=es></th><th class=new>&#x25ef;</th><th class=sw></th></tr>
+            <tr><th class=sw></th><th class=ns></th><th class=nes></th><th class=sw></th><th class=es></th><th class=new></th><th class=esw>&#x25ef;</th><th class=new></th><th class=new></th><th class=sw></th><th class=se></th><th class=new></th><th class=nw></th><th class=es></th><th class=nsw></th></tr>
+            <tr><th class=ns></th><th class=ne></th><th class=nsw></th><th class=nes></th><th class=nw></th><th class=es></th><th class=nsw></th><th class=es></th><th class=esw></th><th class=nw></th><th class=ne>&#x25ef;</th><th class=sw></th><th class=es></th><th class=nsw></th><th class=ns></th></tr>
+            <tr><th class=ns></th><th class=es></th><th class=nw></th><th class=ne></th><th class=esw></th><th class=nw></th><th class=ne></th><th class=nw></th><th class=ne></th><th class=esw></th><th class=esw></th><th class=nsw></th><th class=ns></th><th class=ns></th><th class=ne></th></tr>
+            <tr><th class=ne></th><th class=new></th><th class=ew>&#x25ef;</th><th class=sw></th><th class=ne></th><th class=ew></th><th class=esw></th><th class=ew>&#x25ef;</th><th class=ew></th><th class=nw></th><th class=ns></th><th class=ne></th><th class=nw></th><th class=ne></th><th class=sw></th></tr>
+            <tr><td style="border:none"></td><td style="border:none; background-color:#00ff00; height:20px" colspan = 15></td><td style="border:none"></td></tr>
+            </table>
+            <p style="float:right; width:31%; margin-top:30px">Release conditions:</p>
+            <ul style="float:right; width:29%; font-size:15px"><li style="margin-bottom:10px"><span style="color:#ff0000">Red:</span> More than <strong>10% less</strong> or <strong>80% more</strong> than the previous measurement.</li>
+            <li style="margin-bottom:10px"><span style="color:#f5ea00">Yellow:</span> More than <strong>60% less</strong> or <strong>30% more</strong> than the previous measurement.</li>
+            <li style="margin-bottom:10px"><span style="color:#00ff00">Green:</span> Differs by more than <strong>45% from</strong> the previous measurement.</li>
+            <li style="margin-bottom:75px"><span style="color:#005fff">Blue:</span> Differs by between <strong>20% and 40% from</strong> the previous measurement.</li></ul>
+            <p><strong>Exit condition:</strong><br>The last move must be done when the capacitor is <strong>over 90%</strong> charged, in addition to meeting the release condition.</p> 
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>

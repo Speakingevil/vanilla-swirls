@@ -1,1 +1,1 @@
-# vanilla-swirls
+#[ModKit Wiki](../../wiki)

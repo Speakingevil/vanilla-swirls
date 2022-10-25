@@ -1,0 +1,16 @@
+{
+  "Author": "Speakingevil",
+  "Compatibility": "Compatible",
+  "DefuserDifficulty": "Easy",
+  "Description": "Press the keys that meet the conditions in the correct order while keeping track of the symbols that occur.",
+  "ExpertDifficulty": "Medium",
+  "ModuleID": "keypadSeq",
+  "Name": "Keypad Sequence",
+  "Origin": "Mods",
+  "Published": "2022-10-25",
+  "SortKey": "KEYPADSEQUENCE",
+  "SourceUrl": "https://github.com/Speakingevil/vanilla-swirls",
+  "SteamID": "2879942577",
+  "Symbol": "Kseq",
+  "Type": "Regular"
+}
