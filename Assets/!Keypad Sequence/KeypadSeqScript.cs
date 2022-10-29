@@ -262,8 +262,8 @@ public class KeypadSeqScript : MonoBehaviour {
         keyorder.Add('|');
         for (int i = 0; i < 6; i++)
         {
-            rccount[i] = panelarr.Distinct().Where(x => (x / 6) == i).Count();
-            rccount[i + 6] = panelarr.Distinct().Where(x => (x % 6) == i).Count();
+            rccount[i] = panelarr.Where(x => (x / 6) == i).Count();
+            rccount[i + 6] = panelarr.Where(x => (x % 6) == i).Count();
         }
         m = rccount.Where(x => x > 0).Min();
         for(int i = 0; i < 12; i++)
@@ -336,7 +336,7 @@ public class KeypadSeqScript : MonoBehaviour {
                 }
         keyorder.Add('|');
         q = quadrants.Select(x => x.Count(y => symbselect.Contains(y))).ToList();
-        if(q.Any(x => x < 2))
+        if(q.Any(x => x < 3))
             for (int i = 2; i < 16; i += 4)
                 if (!p[i])
                 {

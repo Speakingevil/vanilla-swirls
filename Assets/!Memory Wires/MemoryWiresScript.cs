@@ -277,7 +277,7 @@ public class MemoryWiresScript : MonoBehaviour {
                         break;
                     case 1:
                         for (int i = 0; i < 6; i++)
-                            c[i] = (i > 0 && colset[0][i - 1] < 4) || (i < 5 && colset[0][i + 1] < 4);
+                            c[i] = (i == 0 || colset[0][i - 1] < 4) && (i == 5 || colset[0][i + 1] < 4);
                         break;
                     case 2:
                         for (int i = 0; i < 6; i++)

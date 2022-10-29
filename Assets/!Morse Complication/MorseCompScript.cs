@@ -17,7 +17,7 @@ public class MorseCompScript : MonoBehaviour {
     public Renderer[] stars;
 
     private readonly int[] txkey = new int[12] { 5, 2, 0, 4, 3, 1, 3, 1, 5, 0, 4, 2};
-    private readonly string[] morse = new string[26] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "..", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
+    private readonly string[] morse = new string[26] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
     private readonly string[] words = new string[62] { "EXPAND", "FORMAT", "REASON", "SQUASH", "SKETCH", "HUNTER", "WINDOW", "MOVING", "RESULT", "SOURCE", "EXOTIC", "FIGURE", "JACKET", "FROZEN", "PEANUT", "SALMON", "QUICHE", "VISUAL", "DANGER", "CANVAS", "WINTER", "ASYLUM", "VALLEY", "COLUMN", "JUNIOR", "ANSWER", "BUCKET", "BISTRO", "FLOWER", "NATURE", "RHYTHM", "STROBE", "OBJECT", "EXCITE", "CARROT", "GROUND", "PILLOW", "STUDIO", "SWITCH", "ADVICE", "VOYAGE", "CREDIT", "EARWAX", "MEDIUM", "BISHOP", "ADJUST", "SPIDER", "TONGUE", "PLANET", "CAMERA", "CLIQUE", "AZTECS", "ARTIST", "GRAVEL", "SMOOTH", "SUBWAY", "CHOOSE", "MUSCLE", "PERISH", "CHORUS", "POWDER", "ACTION"};
     private int[] transformations = new int[6];
     private string[] txs = new string[6];
