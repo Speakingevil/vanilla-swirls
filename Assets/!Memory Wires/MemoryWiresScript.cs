@@ -281,7 +281,7 @@ public class MemoryWiresScript : MonoBehaviour {
                         break;
                     case 2:
                         for (int i = 0; i < 6; i++)
-                            c[i] = colset[0].Contains(1) && i < colset[0].TakeWhile(x => x != 1).Count();
+                            c[i] = colset[0].Contains(1) && i < colset[0].ToList().LastIndexOf(1);
                         break;
                     case 3:
                         for (int i = 0; i < 6; i++)
@@ -325,7 +325,7 @@ public class MemoryWiresScript : MonoBehaviour {
                         break;
                     case 13:
                         for (int i = 0; i < 6; i++)
-                            c[i] = ((i > 0 && colset[0][i - 1] < 1) || (i < 5 && colset[0][i + 1] < 1));
+                            c[i] = ((i > 0 && colset[1][i - 1] < 1) || (i < 5 && colset[1][i + 1] < 1));
                         break;
                     case 14:
                         for (int i = 0; i < 6; i++)
@@ -389,7 +389,7 @@ public class MemoryWiresScript : MonoBehaviour {
                         break;
                     default:
                         for (int i = 0; i < 6; i++)
-                            c[i] = ((i > 0 && colset[4][i - 1] % 4 == 0) || (i < 5 && colset[4][i + 1] % 4 == 0)) && Enumerable.Range(0, 4).Select(x => colset[x][i]).Where((x, k) => !cuts[x][k]).GroupBy(x => x).Any(x => x.Count() > 1);
+                            c[i] = ((i > 0 && colset[4][i - 1] % 4 == 0) || (i < 5 && colset[4][i + 1] % 4 == 0)) && Enumerable.Range(0, 4).Select(x => colset[x][i]).Where((x, k) => !cuts[k][i]).GroupBy(x => x).Any(x => x.Count() > 1);
                         break;
                 }
                 break;

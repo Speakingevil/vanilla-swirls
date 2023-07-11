@@ -463,7 +463,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "sendtochaterror!f Invalid release time. Valid times are single digits.";
                     yield break;
                 }
-                while ((int)info.GetTime() % 10 == t)
+                while (info.GetFormattedTime().Contains(t.ToString()) && info.GetTime() % 10 <= 1)
                     yield return null;
                 while (!info.GetFormattedTime().Contains(t.ToString()))
                 {

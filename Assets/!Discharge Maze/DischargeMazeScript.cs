@@ -33,7 +33,7 @@ public class DischargeMazeScript : MonoBehaviour {
         "X XXX X XXX XXXXX X XXX X XXXXX",
         "X   X     XOX       X   X    O ",
         "X X XXXXX X X XXXXX X X XXXXX X",
-        "X X       X   X     X X       X",
+        "X X       X   X     X XO      X",
         "X X XXX XXX XXX X XXX XXXXXXXXX",
         "  XOX   X   X   X   X       X  ",
         "XXX X XXX XXX X XXX X XXXXX X X",
@@ -41,7 +41,7 @@ public class DischargeMazeScript : MonoBehaviour {
         "X XXXXXXX XXXXXXX X XXX XXXXXXX",
         "X     X   X       X X   XO    X",
         "XXXXX X X X XXXXX X X X X XXX X",
-        " O      X X   X   X   X     X X",
+        " O      X X   X   X   X X   X X",
         "XXX XXXXX X X X X X X X X X X X",
         "X       X   X X XO  X X   X X  ",
         "X XXXXX XXXXX X XXXXX XXXXX XXX",
@@ -73,7 +73,6 @@ public class DischargeMazeScript : MonoBehaviour {
     private void Awake()
     {
         moduleID = ++moduleIDCounter;
-        tp = TwitchPlaysActive;
         rot = Random.Range(0, 4);
         for (int i = 0; i < 2; i++)
         {
@@ -427,10 +426,12 @@ public class DischargeMazeScript : MonoBehaviour {
         {
             if (active)
             {
+                if(TwitchPlaysActive && !tp)
+                    tp = true;
                 timer.text = (charge < 10 ? "0" : "") + charge.ToString();
                 if (held)
                 {
-                    ch -= Time.deltaTime;
+                    ch -= (tp && ch <= 0.5f) ? (Time.deltaTime / 2) : Time.deltaTime;
                     Gauge(ch);
                     bulbon.intensity = ch * 10;
                     if(ch <= 0f)
@@ -483,7 +484,7 @@ public class DischargeMazeScript : MonoBehaviour {
     bool TwitchPlaysActive;
 
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = "!{0) U/R/D/L # [Holds down the specified lever and releases it at the specified charge percentage] | !{0} activate";
+    private readonly string TwitchHelpMessage = "!{0} U/R/D/L # [Holds down the specified lever and releases it at the specified charge percentage] | !{0} activate";
 #pragma warning restore 414
 
     private IEnumerator ProcessTwitchCommand(string command)

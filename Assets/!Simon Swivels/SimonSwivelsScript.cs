@@ -31,7 +31,7 @@ public class SimonSwivelsScript : MonoBehaviour {
     };
     private readonly bool[,,] ledtable = new bool[5, 4, 6]
     {
-        { { true, false, true, false, false, true}, { false, true, false, false, true, false}, { false, true, true, true, false, true}, { true, false, true, true, false, false} },
+        { { true, false, true, false, false, true}, { false, true, false, false, true, false}, { false, true, true, true, true, false}, { true, false, true, true, false, false} },
         { { false, true, false, false, true, true}, { true, true, true, false, true, false}, { false, true, false, true, true, false}, { true, false, true, true, false, true} },
         { { false, false, true, false, true, false}, { true, true, true, true, false, true}, { false, true, false, true, true, true}, { false, false, true, false, false, false} },
         { { true, false, false, true, false, false}, { false, true, true, false, true, false}, { true, false, false, true, false, true}, { false, true, false, true, false, true} },
@@ -80,7 +80,17 @@ public class SimonSwivelsScript : MonoBehaviour {
         }
         matstore.SetActive(false);
         starttime = (int)info.GetTime();
+        info.OnBombExploded += delegate () { OnDestroy(); };
         module.OnActivate = Activate;
+    }
+
+    private void OnDestroy()
+    {
+        if (warning != null)
+        {
+            warning.StopSound();
+            warning = null;
+        }
     }
 
     private void LEDO()

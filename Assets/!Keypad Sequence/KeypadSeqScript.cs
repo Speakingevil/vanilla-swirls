@@ -365,8 +365,8 @@ public class KeypadSeqScript : MonoBehaviour {
                     keyorder.Add(keyind[i]);
                 }
         keyorder.Add('|');
-        n = Enumerable.Range(0, 12).Where(x => !p[x]).ToArray();
-        d = n.Select(x => panelarr[x]).ToArray();
+        n = Enumerable.Range(0, 16).Where(x => !p[x]).ToArray();
+        d = n.Select(x => symbselect[x]).ToArray();
         for (int i = 0; i < n.Length; i++)
             if (d.Count(x => x == d[i]) > 1)
             {
@@ -392,6 +392,7 @@ public class KeypadSeqScript : MonoBehaviour {
             keyorder.RemoveAt(0);
         Debug.LogFormat("[Keypad Sequence #{0}] Panel 1 has the symbols: Top-left = {1}, Top-right = {2}, Bottom-left = {3}, Bottom-right = {4}", moduleID, Logsymb(0), Logsymb(1), Logsymb(2), Logsymb(3));
         Logkeys();
+        info.OnBombExploded += delegate () { OnDestroy(); };
         module.OnActivate += delegate () { mechanism = Audio.PlayGameSoundAtTransformWithRef(KMSoundOverride.SoundEffect.WireSequenceMechanism, transform); StartCoroutine(Hatchmove(true, true)); };
         foreach(KMSelectable scr in scrolls)
         {
@@ -473,6 +474,15 @@ public class KeypadSeqScript : MonoBehaviour {
                 }
                 return false;
             };
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (mechanism != null)
+        {
+            mechanism.StopSound();
+            mechanism = null;
         }
     }
 
