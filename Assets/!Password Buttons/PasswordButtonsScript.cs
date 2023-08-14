@@ -48,6 +48,10 @@ public class PasswordButtonsScript : MonoBehaviour {
     {        
         moduleID = ++moduleIDCounter;
         matstore.SetActive(false);
+	float scalar = transform.lossyScale.x;
+        foreach (Light l in leds)
+            l.range *= scalar;
+	scrlight.range *= scalar;
         word = words.PickRandom();
         for(int i = 0; i < 5; i++)
         {
