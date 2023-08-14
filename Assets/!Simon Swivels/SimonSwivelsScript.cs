@@ -64,6 +64,11 @@ public class SimonSwivelsScript : MonoBehaviour {
     {
         flash = Flash(0);
         moduleID = ++moduleIDCounter;
+	float scalar = transform.lossyScale.x;
+        foreach (Light l in slights)
+            l.range *= scalar;
+	foreach (Light l in llights)
+            l.range *= scalar;
         kpick = Random.Range(0, 4);
         krend.material = kcols[kpick];
         sarr = sarr.Shuffle();
