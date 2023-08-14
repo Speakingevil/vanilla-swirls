@@ -48,6 +48,10 @@ public class PasswordButtonsScript : MonoBehaviour {
     {        
         moduleID = ++moduleIDCounter;
         matstore.SetActive(false);
+        float scale = module.transform.lossyScale.x;
+        scrlight.range *= scale;
+        foreach (Light l in leds)
+            l.range *= scale;
         word = words.PickRandom();
         for(int i = 0; i < 5; i++)
         {
@@ -463,6 +467,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "sendtochaterror!f Invalid release time. Valid times are single digits.";
                     yield break;
                 }
+                yield return "strike";
                 while (info.GetFormattedTime().Contains(t.ToString()) && info.GetTime() % 10 <= 1)
                     yield return null;
                 while (!info.GetFormattedTime().Contains(t.ToString()))
@@ -470,7 +475,6 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "trycancel";
                     yield return null;
                 }
-                yield return "strike";
                 buttons[b].OnInteractEnded();
             }
             else
@@ -576,6 +580,8 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "sendtochaterror!f Invalid submission time. Valid times are single digits.";
                     yield break;
                 }
+                yield return "strike";
+                yield return "solve";
                 while ((int)info.GetTime() % 10 == t)
                     yield return null;
                 while ((int)info.GetTime() % 10 != t)
@@ -583,8 +589,6 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "trycancel";
                     yield return null;
                 }
-                yield return "strike";
-                yield return "solve";
                 buttons[b].OnInteract();
                 buttons[b].OnInteractEnded();
             }
