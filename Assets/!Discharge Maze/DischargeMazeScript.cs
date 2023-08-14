@@ -385,6 +385,12 @@ public class DischargeMazeScript : MonoBehaviour {
         StartCoroutine(Charge());
     }
 
+    private void Start()
+    {
+        float scale = module.transform.lossyScale.x;
+        bulbon.range *= scale;
+    }
+
     private void Logmaze(string[] m)
     {
         string[][] logmaze = new string[15][];
