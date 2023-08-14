@@ -388,7 +388,7 @@ public class DischargeMazeScript : MonoBehaviour {
     private void Start()
     {
         float scalar = transform.lossyScale.x;
-	    bulbon.range *= scalar;
+	bulbon.range *= scalar;
     }
 
     private void Logmaze(string[] m)
