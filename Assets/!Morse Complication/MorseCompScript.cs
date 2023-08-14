@@ -31,6 +31,9 @@ public class MorseCompScript : MonoBehaviour {
     private void Start()
     {
         moduleID = ++moduleIDCounter;
+        float scalar = transform.lossyScale.x;
+        foreach (Light l in lights)
+            l.range *= scalar;
         int pick = Random.Range(1, 63);
         char[] tword = words[pick - 1].ToCharArray().Shuffle();
         for (int i = 0; i < 6; i++)
