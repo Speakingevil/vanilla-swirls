@@ -4,7 +4,8 @@ using System.Linq;
 using UnityEngine;
 using KModkit;
 
-public class PasswordButtonsScript : MonoBehaviour {
+public class PasswordButtonsScript : MonoBehaviour
+{
 
     public KMAudio Audio;
     public KMBombModule module;
@@ -22,7 +23,7 @@ public class PasswordButtonsScript : MonoBehaviour {
     public TextMesh[] disps;
     public GameObject matstore;
 
-    private readonly List<string> words = new List<string> {"ABYSS", "AFTER", "ALBUM", "AVOID", "AZTEC", "BANJO", "BLOOM", "BRICK", "BYTES", "CHEWY", "CLOTH", "CRAWL", "CRISP", "CURSE", "DELTA", "DJINN", "DOZEN", "DWARF", "EARLY", "EIGHT", "EJECT", "EQUAL", "EXIST", "FEWER", "FIRST", "FORUM", "FUNGI", "GHOST", "GLYPH", "GUMBO", "GYROS", "HAVOC", "HERTZ", "HONEY", "HYDRA", "IAMBS", "IDIOM", "IOTAS", "ITCHY", "IVORY", "JAZZY", "JIVED", "JOCKS", "JUICE", "KANJI", "KARMA", "KINGS", "KLUTZ", "KUGEL", "LATEX", "LENTO", "LIMIT", "LUNAR", "MAJOR", "MERCY", "MONAD", "MUNTZ", "NEWLY", "NIXIE", "NORTH", "NUDGE", "OCTAL", "OLIVE", "ORBIT", "OXBOW", "OZONE", "PANDA", "PIANO", "PRISM", "PUNCH", "QOPHS", "QUACK", "QUBIT", "QUOTA", "RADIX", "RIVET", "ROUND", "RUGBY", "SHOGI", "SKULL", "SQUID", "SPICY", "STYLE", "SWIFT", "SYRUP", "TAROK", "THORN", "TEMPO", "TOQUE", "TWIXT", "ULTRA", "UMAMI", "URBAN", "UVULA", "VENOM", "VIBEX", "VINYL", "VOWEL", "WALTZ", "WHISK", "WITCH", "WORLD", "WRONG", "WUSHU", "XENIA", "XYLEM", "YACHT", "YEILD", "YOLKS", "YUCCA", "ZEBRA", "ZILCH", "ZLOTY", "ZOWIE"};
+    private readonly List<string> words = new List<string> { "ABYSS", "AFTER", "ALBUM", "AVOID", "AZTEC", "BANJO", "BLOOM", "BRICK", "BYTES", "CHEWY", "CLOTH", "CRAWL", "CRISP", "CURSE", "DELTA", "DJINN", "DOZEN", "DWARF", "EARLY", "EIGHT", "EJECT", "EQUAL", "EXIST", "FEWER", "FIRST", "FORUM", "FUNGI", "GHOST", "GLYPH", "GUMBO", "GYROS", "HAVOC", "HERTZ", "HONEY", "HYDRA", "IAMBS", "IDIOM", "IOTAS", "ITCHY", "IVORY", "JAZZY", "JIVED", "JOCKS", "JUICE", "KANJI", "KARMA", "KINGS", "KLUTZ", "KUGEL", "LATEX", "LENTO", "LIMIT", "LUNAR", "MAJOR", "MERCY", "MONAD", "MUNTZ", "NEWLY", "NIXIE", "NORTH", "NUDGE", "OCTAL", "OLIVE", "ORBIT", "OXBOW", "OZONE", "PANDA", "PIANO", "PRISM", "PUNCH", "QOPHS", "QUACK", "QUBIT", "QUOTA", "RADIX", "RIVET", "ROUND", "RUGBY", "SHOGI", "SKULL", "SQUID", "SPICY", "STYLE", "SWIFT", "SYRUP", "TAROK", "THORN", "TEMPO", "TOQUE", "TWIXT", "ULTRA", "UMAMI", "URBAN", "UVULA", "VENOM", "VIBEX", "VINYL", "VOWEL", "WALTZ", "WHISK", "WITCH", "WORLD", "WRONG", "WUSHU", "XENIA", "XYLEM", "YACHT", "YEILD", "YOLKS", "YUCCA", "ZEBRA", "ZILCH", "ZLOTY", "ZOWIE" };
     private readonly int[,] subdigs = new int[114, 5] { { 1, 8, 6, 5, 4 }, { -1, 8, 7, 0, 1 }, { 0, 7, 2, -1, 1 }, { 4, 8, 3, 5, 0 }, { 7, 9, 2, 3, 8 }, { 3, 2, 4, 5, 0 }, { 1, 4, 0, 3, 9 }, { 2, 0, 9, 3, -1 }, { 4, 1, 2, 0, 3 }, { 4, 2, 7, 8, -1 }, { 9, 7, -1, 3, 8 }, { 5, 7, 8, 2, 4 }, { 9, 7, 3, 4, 6 }, { 5, 8, 0, -1, 6 }, { 8, 6, 4, 7, 0 }, { 8, 7, 5, 2, 6 }, { 4, 5, 7, 1, 0 }, { 0, 7, 8, 9, 3 }, { 8, 1, 6, 9, 2 }, { 2, 4, -1, 3, 7 }, { 0, 5, 3, 4, 8 }, { 4, 7, 9, 5, 1 }, { 8, 5, 1, 6, 3 }, { 7, 1, 3, 4, 2 }, { 0, 1, 9, 2, 6 }, { 9, 5, 1, 7, 8 }, { 0, 7, 3, 8, 4 }, { 2, 7, 4, -1, 6 }, { 7, 6, 2, 1, 0 }, { 8, 1, 7, 6, 4 }, { 1, 7, 9, -1, 3 }, { 9, 3, 2, -1, 5 }, { 2, 5, -1, 7, 1 }, { 7, 1, 2, 9, 4 }, { 5, 8, 9, 7, 3 }, { 9, 0, 8, 7, -1 }, { -1, 6, 3, 2, 1 }, { 3, 5, 9, 4, 0 }, { 0, -1, 9, 5, 4 }, { 0, 9, 1, 3, 6 }, { 8, 4, 0, 1, 3 }, { 8, 1, 0, 5, 6 }, { 2, 9, 6, 7, 3 }, { 3, 9, 5, 2, 4 }, { 0, 3, 6, -1, 7 }, { 0, 6, 2, 5, -1 }, { 5, 1, 0, 9, 8 }, { 6, 2, 1, 3, 5 }, { 5, 1, 6, 4, 3 }, { 3, 0, 1, 8, 2 }, { 1, 5, 4, 0, 7 }, { 2, 6, 4, 3, 9 }, { 1, 4, 7, 6, 8 }, { 6, 3, 0, 2, 4 },
         { 5, 3, 0, 4, -1 }, { 7, 3, 4, 0, -1 }, { 1, 4, 6, 9, 3 }, { 2, 1, 0, 8, 7 }, { 8, 0, -1, 6, 9 }, { 5, 2, 4, 3, 6 }, { 9, 6, 5, 8, 0 }, { 5, 9, 1, 6, 8 }, { 8, 9, 3, 0, 6 }, { 9, -1, 5, 3, 7 }, { 2, 8, 1, 9, 4 }, { 3, 4, 6, 2, -1 }, { 0, 4, 9, 1, 2 }, { 5, 3, 2, 7, 6 }, { 1, -1, 2, 6, 3 }, { 0, 9, -1, 8, 1 }, { 6, 5, 8, 0, 1 }, { 2, 4, 3, 8, 0 }, { 1, 0, 2, 4, 7 }, { 2, 7, 0, 6, 1 }, { 8, 5, 9, 1, 7 }, { 8, 6, -1, 5, 1 }, { 5, 2, 3, -1, 9 }, { 0, 6, 5, 7, 8 }, { 4, 0, 1, 2, 9 }, { -1, 5, 6, 3, 7 }, { 6, 3, 9, 5, 0 }, { 8, 6, 1, 3, 7 }, { 9, 1, 6, 8, 4 }, { 2, -1, 3, 5, 8 }, { 9, 1, 8, 4, 7 }, { 2, 0, 7, 5, 1 }, { 7, 2, -1, 0, 6 }, { 3, 4, 8, -1, 7 }, { 5, 4, 1, 7, 2 }, { 8, 3, 5, 7, 1 }, { -1, 7, 5, 6, 9 }, { 0, 4, 5, 9, 1 }, { 5, 2, -1, 8, 7 }, { 6, 1, 2, 7, 9 }, { 7, 8, 0, 6, 9 }, { 0, 5, 4, 1, 9 }, { 8, 5, 0, 9, 4 }, { 4, 2, 8, 7, 6 }, { 0, 1, 2, 8, 5 }, { 9, 8, 0, 5, -1 }, { 3, -1, 8, 2, 9 }, { 1, 5, -1, 8, 0 }, { 6, 3, 5, 0, 7 }, { 2, -1, 7, 3, 4 }, { 2, 6, 7, 8, 5 }, { 8, 4, 3, 5, 9 }, { 4, 3, 6, 8, 0 }, { 3, 9, 2, 0, 5 }, { 6, 9, 3, -1, 4 }, { 2, 7, 9, 1, 0 }, { 4, 6, 9, 2, 0 }, { 6, 9, 7, 8, 0 }, { 6, 2, -1, 5, 3 }, { 4, 5, 8, 2, 3 } };
     private List<string>[] letterlists = new List<string>[5];
@@ -30,7 +31,7 @@ public class PasswordButtonsScript : MonoBehaviour {
     private string word;
     private int[] displets = new int[5];
     private int[] bcols = new int[5];
-    private int[][] pressigns = new int[2][] { new int[5] { 0, 1, 2, 3, 4}, new int[5] { -1, -1, -1, -1, -1} };
+    private int[][] pressigns = new int[2][] { new int[5] { 0, 1, 2, 3, 4 }, new int[5] { -1, -1, -1, -1, -1 } };
     private int[] holdtime = new int[2];
     private bool hold;
     private bool struckhold;
@@ -44,23 +45,27 @@ public class PasswordButtonsScript : MonoBehaviour {
     private static int moduleIDCounter;
     private int moduleID;
 
-	private void Start()
-    {        
+    private void Start()
+    {
         moduleID = ++moduleIDCounter;
         matstore.SetActive(false);
+        float scale = module.transform.lossyScale.x;
+        scrlight.range *= scale;
+        foreach (Light l in leds)
+            l.range *= scale;
         word = words.PickRandom();
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            letterlists[i] = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            letterlists[i] = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             lselect[i, 0] = word[i].ToString();
             letterlists[i].Remove(word[i].ToString());
             displets[i] = Random.Range(0, 5);
             bcols[i] = Random.Range(0, 5);
             brends[i].material = bmats[bcols[i]];
         }
-        Debug.LogFormat("[Password Buttons #{0}] The buttons have the colours: {1}.", moduleID, string.Join(", ", bcols.Select(x => new string[] { "Red", "Yellow", "Blue", "White", "Black"}[x]).ToArray()));
-        while(displets.All(x => x == 0))
-            for(int i = 0; i < 5; i++)
+        Debug.LogFormat("[Password Buttons #{0}] The buttons have the colours: {1}.", moduleID, string.Join(", ", bcols.Select(x => new string[] { "Red", "Yellow", "Blue", "White", "Black" }[x]).ToArray()));
+        while (displets.All(x => x == 0))
+            for (int i = 0; i < 5; i++)
                 displets[i] = Random.Range(0, 5);
         for (int i = 1; i < 5; i++)
         {
@@ -72,23 +77,23 @@ public class PasswordButtonsScript : MonoBehaviour {
                 lselect[j, i] = let;
                 string[] test = new string[5];
                 test[j] = let;
-                for(int k = 0; k < i + 1; k++)
+                for (int k = 0; k < i + 1; k++)
                 {
                     if (j > 0)
                         test[0] = lselect[0, k];
-                    for(int m = 0; m < (j >= i ? i : i + 1); m++)
+                    for (int m = 0; m < (j >= i ? i : i + 1); m++)
                     {
                         if (j != 1)
                             test[1] = lselect[1, m];
-                        for(int n = 0; n < (j >= i ? i : i + 1); n++)
+                        for (int n = 0; n < (j >= i ? i : i + 1); n++)
                         {
                             if (j != 2)
                                 test[2] = lselect[2, n];
-                            for(int p = 0; p < (j >= i ? i : i + 1); p++)
+                            for (int p = 0; p < (j >= i ? i : i + 1); p++)
                             {
                                 if (j != 3)
                                     test[3] = lselect[3, p];
-                                for(int q = 0; q < (j >= i ? i : i + 1); q++)
+                                for (int q = 0; q < (j >= i ? i : i + 1); q++)
                                 {
                                     if (j < 4)
                                         test[4] = lselect[4, q];
@@ -104,7 +109,7 @@ public class PasswordButtonsScript : MonoBehaviour {
         for (int i = 0; i < 5; i++)
         {
             disps[i].text = lselect[i, displets[i]];
-            Debug.LogFormat("[Password Buttons #{0}] The {1} display shows the letters: {2}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth"}[i], string.Join(", ", Enumerable.Range(0, 5).Select(x => lselect[i, (x + displets[i]) % 5]).ToArray()));
+            Debug.LogFormat("[Password Buttons #{0}] The {1} display shows the letters: {2}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth" }[i], string.Join(", ", Enumerable.Range(0, 5).Select(x => lselect[i, (x + displets[i]) % 5]).ToArray()));
         }
         Debug.LogFormat("[Password Buttons #{0}] The password is {1}.", moduleID, word);
         pressigns[0] = pressigns[0].Shuffle();
@@ -114,7 +119,7 @@ public class PasswordButtonsScript : MonoBehaviour {
         while (set[0] == subton)
             set[0] = Random.Range(0, 5);
         pressigns[1][set[0]] = set[1];
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             set[1] = pressigns[0][set[0]];
             while (pressigns[1][set[0]] >= 0)
@@ -122,11 +127,11 @@ public class PasswordButtonsScript : MonoBehaviour {
             pressigns[1][set[0]] = set[1];
         }
         for (int i = 0; i < 5; i++)
-            if(i == subton)
+            if (i == subton)
                 Debug.LogFormat("[Password Buttons #{0}] The {1} button toggles display {2}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth" }[i], pressigns[0][i] + 1);
             else
                 Debug.LogFormat("[Password Buttons #{0}] The {1} button toggles displays {2} and {3}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth" }[i], pressigns[0][i] + 1, pressigns[1][i] + 1);
-        foreach(KMSelectable button in buttons)
+        foreach (KMSelectable button in buttons)
         {
             int b = buttons.IndexOf(button);
             button.OnInteract = delegate ()
@@ -202,8 +207,8 @@ public class PasswordButtonsScript : MonoBehaviour {
                             }
                             break;
                     }
-                    holdtime[1] = new int[,] { { 5, 9, 2, 3}, { 7, 1, 6, 5}, { 4, 3, 8, 0}, { 2, 0, 7, 9}, { 8, 6, 1, 4} }[bcols[b], r];
-                    Debug.LogFormat("[Password Buttons #{0}] {1} {2} rule {3}.", moduleID, new string[] { "First", "Second", "Third", "Fourth"}[r], new string[] { "Red", "Yellow", "Blue", "White", "Black"}[bcols[b]], holdtime[0] == holdtime[1] ? "satisfied" : "failed");
+                    holdtime[1] = new int[,] { { 5, 9, 2, 3 }, { 7, 1, 6, 5 }, { 4, 3, 8, 0 }, { 2, 0, 7, 9 }, { 8, 6, 1, 4 } }[bcols[b], r];
+                    Debug.LogFormat("[Password Buttons #{0}] {1} {2} rule {3}.", moduleID, new string[] { "First", "Second", "Third", "Fourth" }[r], new string[] { "Red", "Yellow", "Blue", "White", "Black" }[bcols[b]], holdtime[0] == holdtime[1] ? "satisfied" : "failed");
                     StartCoroutine("ScreenFlash");
                 }
                 else
@@ -301,13 +306,13 @@ public class PasswordButtonsScript : MonoBehaviour {
                 }
                 else
                     hold = false;
-                for(int i = 0; i < 2; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     if (i == 0 && b == subton)
                         continue;
                     int c = pressigns[i][b];
                     displets[c] = (displets[c] + 1) % 5;
-                    if(skip[b, c] == displets[c] + 1)
+                    if (skip[b, c] == displets[c] + 1)
                         displets[c] = (displets[c] + 1) % 5;
                     disps[c].text = lselect[c, displets[c]];
                 }
@@ -322,7 +327,7 @@ public class PasswordButtonsScript : MonoBehaviour {
         if (holdtime[0] == holdtime[1])
         {
             scrcol = Random.Range(0, 4);
-            Debug.LogFormat("[Password Buttons #{0}] The display has turned {1}.", moduleID, new string[] { "Red", "Yellow", "Blue", "White"}[scrcol]);
+            Debug.LogFormat("[Password Buttons #{0}] The display has turned {1}.", moduleID, new string[] { "Red", "Yellow", "Blue", "White" }[scrcol]);
             screen.material = scrmats[scrcol + 1];
             scrlight.color = new Color[] { new Color(1, 0, 0), new Color(1, 1, 0), new Color(0, 1, 1), new Color(1, 1, 1) }[scrcol];
             scrlight.enabled = true;
@@ -363,7 +368,7 @@ public class PasswordButtonsScript : MonoBehaviour {
         leds[x].enabled = false;
         lrends[x].material = io[1];
         yield return new WaitForSeconds(9);
-        for(int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++)
         {
             leds[x].enabled = i % 2 == 0;
             lrends[x].material = io[i % 2];
@@ -382,7 +387,7 @@ public class PasswordButtonsScript : MonoBehaviour {
 
     private IEnumerator ProcessTwitchCommand(string command)
     {
-        string[] commands = command.ToLowerInvariant().Split(' ');
+        string[] commands = command.ToLowerInvariant().Split(' ').Where(x => x.Length >= 1).ToArray();
         if (commands[0] == "hold")
         {
             if (commands.Length < 2 || commands.Length > 4)
@@ -423,7 +428,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                 }
                 buttons[b].OnInteract();
                 yield return null;
-                if(holdtime[0] != holdtime[1])
+                if (holdtime[0] != holdtime[1])
                 {
                     yield return "strike";
                     while (!struckhold)
@@ -450,7 +455,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                 yield return "sendtochaterror!f Invalid button position. Valid positions are numbers in the range 1-5.";
                 yield break;
             }
-            if(b + 1 != holdton)
+            if (b + 1 != holdton)
             {
                 yield return "sendtochaterror!f Button " + (b + 1) + " is not held down.";
                 yield break;
@@ -463,6 +468,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "sendtochaterror!f Invalid release time. Valid times are single digits.";
                     yield break;
                 }
+                yield return "strike";
                 while (info.GetFormattedTime().Contains(t.ToString()) && info.GetTime() % 10 <= 1)
                     yield return null;
                 while (!info.GetFormattedTime().Contains(t.ToString()))
@@ -470,7 +476,6 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "trycancel";
                     yield return null;
                 }
-                yield return "strike";
                 buttons[b].OnInteractEnded();
             }
             else
@@ -478,13 +483,13 @@ public class PasswordButtonsScript : MonoBehaviour {
         }
         else if (commands[0] == "cycle")
         {
-            if(commands.Length != 2)
+            if (commands.Length != 2)
             {
                 yield return "sendtochaterror!f Invalid cycle command length.";
                 yield break;
             }
             int b = "12345".IndexOf(commands[1].ToString());
-            if(commands[1].Length > 1 || b < 0)
+            if (commands[1].Length > 1 || b < 0)
             {
                 yield return "sendtochaterror!f Invalid button position. Valid positions are numbers in the range 1-5.";
                 yield break;
@@ -494,7 +499,7 @@ public class PasswordButtonsScript : MonoBehaviour {
                 yield return "sendtochaterror!f Button " + (b + 1) + " must be unlocked before it can be cycled.";
                 yield break;
             }
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 yield return null;
                 if (!unlock[b])
@@ -509,12 +514,12 @@ public class PasswordButtonsScript : MonoBehaviour {
         }
         else if (commands[0] == "toggle")
         {
-            if(commands.Length > 2)
+            if (commands.Length > 2)
             {
                 yield return "sendtochaterror!f Invalid toggle command length.";
                 yield break;
             }
-            if(unlock.All(x => !x))
+            if (unlock.All(x => !x))
             {
                 yield return "sendtochaterror!f There are no unlocked buttons to toggle.";
                 yield break;
@@ -528,10 +533,11 @@ public class PasswordButtonsScript : MonoBehaviour {
                 yield return "sendtochaterror!f Invalid number entered.";
                 yield break;
             }
-            n %= 4;
-            for(int i = 0; i < n; i++)
+            if(n != 4)
+                n %= 4;
+            for (int i = 0; i < n; i++)
             {
-                for(int j = 0; j < p.Count(); j++)
+                for (int j = 0; j < p.Count(); j++)
                 {
                     yield return null;
                     if (!unlock[p[j]])
@@ -541,9 +547,11 @@ public class PasswordButtonsScript : MonoBehaviour {
                         continue;
                     }
                     buttons[p[j]].OnInteract();
+                    yield return null;
                     buttons[p[j]].OnInteractEnded();
                 }
             }
+            yield break;
         }
         else if (commands[0] == "submit")
         {
@@ -576,6 +584,8 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "sendtochaterror!f Invalid submission time. Valid times are single digits.";
                     yield break;
                 }
+                yield return "strike";
+                yield return "solve";
                 while ((int)info.GetTime() % 10 == t)
                     yield return null;
                 while ((int)info.GetTime() % 10 != t)
@@ -583,8 +593,6 @@ public class PasswordButtonsScript : MonoBehaviour {
                     yield return "trycancel";
                     yield return null;
                 }
-                yield return "strike";
-                yield return "solve";
                 buttons[b].OnInteract();
                 buttons[b].OnInteractEnded();
             }
@@ -602,11 +610,11 @@ public class PasswordButtonsScript : MonoBehaviour {
         yield return null;
         int[] seq = new int[5];
         seq[4] = subton;
-        for(int i = 3; i >= 0; i--)
+        for (int i = 3; i >= 0; i--)
         {
-            for(int j = 0; j < 5; j++)
+            for (int j = 0; j < 5; j++)
             {
-                if(pressigns[1][j] == pressigns[0][seq[i + 1]] && pressigns[0][j] != pressigns[0][seq[i + 1]])
+                if (pressigns[1][j] == pressigns[0][seq[i + 1]] && pressigns[0][j] != pressigns[0][seq[i + 1]])
                 {
                     seq[i] = j;
                     break;
@@ -689,7 +697,7 @@ public class PasswordButtonsScript : MonoBehaviour {
             while ((int)info.GetTime() % 10 != h)
                 yield return null;
             buttons[b].OnInteract();
-            while(!hold)
+            while (!hold)
                 yield return null;
             yield return null;
             r = 0;
@@ -708,7 +716,7 @@ public class PasswordButtonsScript : MonoBehaviour {
             while (!info.GetFormattedTime().Contains(r.ToString()))
                 yield return null;
             buttons[b].OnInteractEnded();
-            while(displets[c] != 0)
+            while (displets[c] != 0)
             {
                 yield return null;
                 buttons[b].OnInteract();

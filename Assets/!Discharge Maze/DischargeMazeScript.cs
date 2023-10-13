@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DischargeMazeScript : MonoBehaviour {
-
+public class DischargeMazeScript : MonoBehaviour
+{
     public KMAudio Audio;
     public KMBombModule module;
     public List<KMSelectable> arrows;
@@ -63,7 +63,7 @@ public class DischargeMazeScript : MonoBehaviour {
     private bool active;
     private bool held;
     private int charge;
-    private int[] chrecord = new int[2] { -1, -1};
+    private int[] chrecord = new int[2] { -1, -1 };
     private bool tp;
 
     private static int moduleIDCounter;
@@ -83,7 +83,8 @@ public class DischargeMazeScript : MonoBehaviour {
         for (int i = 0; i < 15; i++)
             for (int j = 0; j < 15; j++)
             {
-                switch (rot) {
+                switch (rot)
+                {
                     case 0: maze[i] += bigmaze[pos[0] + i][pos[1] + j].ToString(); break;
                     case 1: maze[i] += bigmaze[pos[1] + j][pos[0] + (14 - i)].ToString(); break;
                     case 2: maze[i] += bigmaze[pos[0] + (14 - i)][pos[1] + (14 - j)].ToString(); break;
@@ -91,7 +92,7 @@ public class DischargeMazeScript : MonoBehaviour {
                 }
             }
         for (int i = 0; i < 49; i++)
-            if(maze[(2 * (i / 7)) + 1][(2 * (i % 7) + 1)] == 'O')
+            if (maze[(2 * (i / 7)) + 1][(2 * (i % 7) + 1)] == 'O')
             {
                 mrends[i].enabled = true;
                 mrends[i].material = markmats[Random.Range(0, 3)];
@@ -110,7 +111,8 @@ public class DischargeMazeScript : MonoBehaviour {
                 maze[i] = "X" + new string(maze[i].Skip(1).ToArray());
         string[,] testmaze = new string[7, 7];
         int iter = 0;
-        switch (edge){
+        switch (edge)
+        {
             case 0:
                 for (int i = 0; i < 7; i++)
                     if (maze[14][(2 * i) + 1] != 'X')
@@ -137,7 +139,7 @@ public class DischargeMazeScript : MonoBehaviour {
             for (int i = 0; i < 49; i++)
                 if (testmaze[i / 7, i % 7] == "+")
                     testmaze[i / 7, i % 7] = iter > 6 ? "O" : "X";
-            for(int i = 0; i < 49; i++)
+            for (int i = 0; i < 49; i++)
             {
                 if (testmaze[i / 7, i % 7] != null)
                     continue;
@@ -158,13 +160,13 @@ public class DischargeMazeScript : MonoBehaviour {
                 }
                 if (i % 7 > 0 && (testmaze[i / 7, (i % 7) - 1] == "X" || testmaze[i / 7, (i % 7) - 1] == "O") && maze[(2 * (i / 7)) + 1][2 * (i % 7)] != 'X')
                     testmaze[i / 7, i % 7] = "+";
-            }           
+            }
             iter++;
         }
         pos[0] = Enumerable.Range(0, 49).Where(x => testmaze[x / 7, x % 7] == "O").PickRandom();
         pos[1] = pos[0] % 7;
         pos[0] /= 7;
-        Debug.LogFormat("[Discharge Maze #{0}] The starting position of the {1} light is {2}{3}.", moduleID, new string[] { "Green", "Yellow", "Blue", "Red"}[cols[1]], "ABCDEFG"[pos[1]], pos[0] + 1);
+        Debug.LogFormat("[Discharge Maze #{0}] The starting position of the {1} light is {2}{3}.", moduleID, new string[] { "Green", "Yellow", "Blue", "Red" }[cols[1]], "ABCDEFG"[pos[1]], pos[0] + 1);
         Logmaze(maze);
         Debug.LogFormat("[Discharge Maze #{0}] The gauge fluid is {1}.", moduleID, new string[] { "Green", "Yellow", "Blue", "Red" }[cols[0]]);
         matstore.SetActive(false);
@@ -181,7 +183,7 @@ public class DischargeMazeScript : MonoBehaviour {
             }
             return false;
         };
-        foreach(KMSelectable arrow in arrows)
+        foreach (KMSelectable arrow in arrows)
         {
             int k = arrows.IndexOf(arrow);
             arrow.OnInteract = delegate ()
@@ -378,11 +380,17 @@ public class DischargeMazeScript : MonoBehaviour {
                                 Debug.LogFormat("[Discharge Maze #{0}] {1} Moves to {2}{3}.", moduleID, move, "ABCDEFG"[pos[1]], pos[0] + 1);
                             }
                             return;
-                    }                   
+                    }
                 }
             };
         }
         StartCoroutine(Charge());
+    }
+
+    private void Start()
+    {
+        float scale = module.transform.lossyScale.x;
+        bulbon.range *= scale;
     }
 
     private void Logmaze(string[] m)
@@ -402,7 +410,7 @@ public class DischargeMazeScript : MonoBehaviour {
         float e = switches[h].localEulerAngles.z;
         e -= 46;
         e /= 180;
-        while(e < 0.5f && held)
+        while (e < 0.5f && held)
         {
             e += Time.deltaTime;
             switches[h].localEulerAngles = new Vector3(0, -90, Mathf.Lerp(46, 136, 2 * e));
@@ -411,7 +419,7 @@ public class DischargeMazeScript : MonoBehaviour {
         switches[h].localEulerAngles = new Vector3(0, -90, 136);
         while (held)
             yield return null;
-        while(e > 0f && !held)
+        while (e > 0f && !held)
         {
             e -= Time.deltaTime;
             switches[h].localEulerAngles = new Vector3(0, -90, Mathf.Lerp(46, 136, 2 * e));
@@ -426,7 +434,7 @@ public class DischargeMazeScript : MonoBehaviour {
         {
             if (active)
             {
-                if(TwitchPlaysActive && !tp)
+                if (TwitchPlaysActive && !tp)
                     tp = true;
                 timer.text = (charge < 10 ? "0" : "") + charge.ToString();
                 if (held)
@@ -434,7 +442,7 @@ public class DischargeMazeScript : MonoBehaviour {
                     ch -= (tp && ch <= 0.5f) ? (Time.deltaTime / 2) : Time.deltaTime;
                     Gauge(ch);
                     bulbon.intensity = ch * 10;
-                    if(ch <= 0f)
+                    if (ch <= 0f)
                     {
                         Debug.LogFormat("[Discharge Maze #{0}] Capacitor Depleted!", moduleID);
                         Struck();
@@ -453,7 +461,7 @@ public class DischargeMazeScript : MonoBehaviour {
             }
             else
             {
-                if(ch > 0f)
+                if (ch > 0f)
                 {
                     ch -= Time.deltaTime;
                     Gauge(ch);
@@ -507,7 +515,7 @@ public class DischargeMazeScript : MonoBehaviour {
             yield break;
         }
         string[] commands = command.Split(' ');
-        if(commands.Length < 2)
+        if (commands.Length < 2)
         {
             yield return "sendtochaterror!f Invalid command length.";
             yield break;
@@ -525,7 +533,7 @@ public class DischargeMazeScript : MonoBehaviour {
             commands[1] = commands[1].Remove(commands[1].Length - 1);
         if (int.TryParse(commands[1], out t))
         {
-            if(t > 99 || t < 1)
+            if (t > 99 || t < 1)
             {
                 yield return "sendtochaterror!f Charge percentages must be in the range 01-99.";
                 yield break;

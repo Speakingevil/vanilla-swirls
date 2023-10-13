@@ -105,7 +105,7 @@ public class WhosOnGasScript : MonoBehaviour {
                             else
                             {
                                 for (int i = 0; i < 3; i++)
-                                    lcds[i].material = lmats[prog <= i ? (stage >> 1 <= i ? 0 : 1) : 2];
+                                    lcds[i].material = lmats[prog <= i ? (stage >> 1 < i ? 0 : 1) : 2];
                                 ans.Add(symbols[validbutton] % 4);
                                 StartCoroutine(Stage(2, true));
                             }
@@ -270,13 +270,14 @@ public class WhosOnGasScript : MonoBehaviour {
         for (int i = 0; i < 20; i++)
         {
             for (int j = 0; j < prog; j++)
-                lcds[j].material = lmats[i % 2 == 1 ? (j <= stage >> 1 ? 1 : 0) : 2];
+                lcds[j].material = lmats[i % 2 == 1 ? (j < stage >> 1 ? 1 : 0) : 2];
             yield return new WaitForSeconds(0.25f);
         }
         warning.StopSound();
         pressable = false;
         Debug.LogFormat("[Who's on Gas #{0}] Times up!", moduleID);
         module.HandleStrike();
+        stage--;
         StartCoroutine(Stage(1, true));
     }
 #pragma warning disable 414
@@ -301,7 +302,7 @@ public class WhosOnGasScript : MonoBehaviour {
                 yield return "sendtochaterror!f " + commands[i] + " is an invalid command.";
                 yield break;
             }
-            int x = "lr".IndexOf(command[1].ToString());
+            int x = "lr".IndexOf(commands[i][1].ToString());
             int y = "tmb".IndexOf(commands[i][0].ToString()) * 2;
             if(x < 0 || y < 0)
             {
