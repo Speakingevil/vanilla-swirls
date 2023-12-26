@@ -46,9 +46,12 @@ public class SequentialButtonScript : MonoBehaviour {
     private int moduleID;
     private bool moduleSolved;
 
-    private void Awake()
+    private void Start()
     {
         moduleID = ++moduleIDCounter;
+        float scale = module.transform.lossyScale.x;
+        foreach (Light l in lights)
+            l.range *= scale;
         matstore.SetActive(false);
         binfo[0] = Random.Range(0, 5);
         binfo[1] = Random.Range(0, 4);
@@ -58,8 +61,6 @@ public class SequentialButtonScript : MonoBehaviour {
         if (binfo[0] == 4)
             labels[3].color = new Color(1, 1, 1);
         Debug.LogFormat("[Sequential Button #{0}] The button is {1} and labelled \"{2}\".", moduleID, collog[binfo[0]], blabels[binfo[1]]);
-        for (int i = 0; i < 16; i++)
-            lcols[i] = Random.Range(0, 4);
         List<int> choose = Enumerable.Range(4, 95).Select(x => (int)Mathf.Sqrt(x)).ToList();
         for (int i = 0; i < 4; i++)
         {
@@ -85,11 +86,23 @@ public class SequentialButtonScript : MonoBehaviour {
             cut[i] = cinfo.y;
             Debug.Log(wirenum + ", " + cinfo.x + ", " + cinfo.y);
             logs[i] += string.Format("\n[Sequential Button #{0}] The {1} rule is satisfied; cut wire {2}-{3}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "nineth"}[(int)cinfo.x], (3 * i) + (cinfo.y / 3) + 1, "ABC"[cinfo.y % 3]);
+        }
+        do
+        {
+            for (int i = 0; i < 16; i++)
+                lcols[i] = Random.Range(0, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                rel[i] = 0;
+                int[] plcols = lcols.Take(4 * (i + 1)).ToArray();
+                for (int j = 0; j < 4; j++)
+                    if (plcols.Any(x => x == j))
+                        rel[i] += locc[j, plcols.Count(x => x == j) - 1];
+            }
+        } while (rel.Any(x => x / 10 > 5 && x % 10 > 5));
+        for (int i = 0; i < 4; i++)
+        {
             logs[i] += string.Format("\n[Sequential Button #{0}] The colours of the lights are: {1}.", moduleID, string.Join(", ", lcols.Skip(4 * i).Take(4).Select(x => collog[x]).ToArray()));
-            int[] plcols = lcols.Take(4 * (i + 1)).ToArray();
-            for (int j = 0; j < 4; j++)
-                if(plcols.Any(x => x == j))
-                    rel[i] += locc[j, plcols.Count(x => x == j) - 1];
             logs[i] += string.Format("\n[Sequential Button #{0}] Release the button when the timer contains the digits: {1}.", moduleID, string.Join(" & ", rel[i].ToString().Select(x => x.ToString()).Distinct().ToArray()));
         }
         Panelset(0);
@@ -124,13 +137,12 @@ public class SequentialButtonScript : MonoBehaviour {
             StartCoroutine(covermove);
             return true;
         };
-        cover.OnCancel += delegate ()
+        button.OnDeselect += delegate ()
         {
             if (covermove != null)
                 StopCoroutine(covermove);
             covermove = Covermove(false);
             StartCoroutine(covermove);
-            return true;
         };
         button.OnInteract += delegate ()
         {
@@ -329,7 +341,8 @@ public class SequentialButtonScript : MonoBehaviour {
                 {
                     rule = 4;
                     for (int j = 1; j < 9; j += 3)
-                        p = j;
+                        if(panel[j] >= 0)
+                             p = j;
                 }
                 else if (binfo[1] == 2)
                 {
@@ -474,7 +487,7 @@ public class SequentialButtonScript : MonoBehaviour {
                 else if (panel.Count(w => w == 2) > panel.Count(w => w == 3))
                 {
                     rule = 2;
-                    p = panel.FindIndex(w => w == 1);
+                    p = panel.FindIndex(w => w == 2);
                 }
                 else if (Enumerable.Range(0, 5).Where(x => x != binfo[0]).All(x => panel.Count(w => w == binfo[0]) >= panel.Count(w => w == x)))
                 {
@@ -529,14 +542,15 @@ public class SequentialButtonScript : MonoBehaviour {
                 else if (ports[5].Contains(binfo[0]))
                 {
                     rule = 1;
-                    for (int j = 3; j < 9; j++)
-                        if (panel[j] == panel[0])
+                    p = Placement(panel, 1);
+                    for (int j = 2; j < 9; j++)
+                        if (panel[Placement(panel, j)] == panel[p])
                         {
                             p = j;
                             break;
                         }
                 }
-                else if (panel[3] == binfo[0])
+                else if (panel[Placement(panel, 4)] == binfo[0])
                 {
                     rule = 2;
                     p = Placement(panel, 1);
@@ -899,7 +913,7 @@ public class SequentialButtonScript : MonoBehaviour {
                 yield return new WaitForSeconds(0.1f);
                 button.OnInteractEnded();
                 yield return null;
-                cover.OnCancel();
+                button.OnDeselect();
                 yield break;
             case "hold":
                 if (hold)
@@ -926,7 +940,7 @@ public class SequentialButtonScript : MonoBehaviour {
                     yield return "sendtochaterror!f Hold the button before releasing it.";
                     yield break;
                 }
-                if (commands[1][commands[1].Length - 3] != ':')
+                if (commands[1].Length < 3 || commands[1][commands[1].Length - 3] != ':')
                 {
                     yield return "sendtochaterror!f Invalid timer format.";
                     yield break;
@@ -944,10 +958,10 @@ public class SequentialButtonScript : MonoBehaviour {
                         Debug.Log("Releasing button with " + m.ToString() + " seconds remaining.");
                         yield return null;
                         while ((int)info.GetTime() != m)
-                            yield return null;
+                            yield return "trycancel";
                         button.OnInteractEnded();
                         yield return null;
-                        cover.OnCancel();
+                        button.OnDeselect();
                     }
                 }
                 else
@@ -980,7 +994,7 @@ public class SequentialButtonScript : MonoBehaviour {
                         yield return true;
                     button.OnInteractEnded();
                     yield return null;
-                    cover.OnCancel();
+                    button.OnDeselect();
                 }
             }
             else

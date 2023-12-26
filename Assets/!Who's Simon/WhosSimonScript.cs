@@ -223,14 +223,17 @@ public class WhosSimonScript : MonoBehaviour {
         lights[i].enabled = true;
         yield return new WaitForSeconds(0.5f);
         lights[i].enabled = false;
-        if (e == 6)
+        if (e >= 6)
         {
             while (e > 0)
             {
                 e -= Time.deltaTime;
                 yield return null;
                 if (!pressable)
+                {
+                    e = 6;
                     yield break;
+                }
             }
             index = 0;
             StartCoroutine("Sequence");

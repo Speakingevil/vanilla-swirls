@@ -13,7 +13,7 @@ public class KeypassScript : MonoBehaviour {
     public Material[] io;
     public TextMesh[] labels;
 
-    private string[] fours = new string[50] { "NICE", "PLAY", "GRIT", "HUSK", "BODY", "WORK", "TOMB", "QOPH", "VERY", "COAX", "CHEW", "NEXT", "LOCK", "JUMP", "EAST", "FIVE", "SWAP", "AUTO", "GOJI", "TAXI", "HAZE", "COGS", "EQUI", "MILD", "MORE", "NEWS", "FAUX", "YOLK", "FLAW", "CRAB", "UNDO", "JAMB", "BUYS", "LAZY", "JACK", "WORD", "GOAL", "LOVE", "WHAT", "IDLE", "CITY", "ZONE", "EMIT", "ONYX", "TZAR", "QAFS", "DISH", "DYMS", "OVUM", "VERB"};
+    private string[] fours = new string[50] { "NICE", "PLAY", "GRIT", "HUSK", "BODY", "WORK", "TOMB", "QOPH", "VERY", "COAX", "CHEW", "NEXT", "LOCK", "JUMP", "EAST", "FIVE", "SWAP", "AUTO", "GOJI", "TAXI", "HAZE", "COGS", "EQUI", "MILD", "MORE", "NEWS", "FAUX", "YOLK", "FLAW", "CRAB", "UNDO", "JAMB", "BUYS", "LAZY", "JACK", "WORD", "GOAL", "LOVE", "WHAT", "IDLE", "CITY", "ZONE", "EMIT", "ONYX", "TZAR", "QAFS", "DISH", "DYNO", "OVUM", "VERB"};
     private string[] fives = new string[130] { "ABHOR", "AFTER", "AVOID", "AXION", "AZURE", "BASIJ", "BHUNA", "BLACK", "BOXES", "BURQA", "CARGO", "CHAIN", "CRUMB", "COQUI", "CULEX", "DANCE", "DIRTY", "DOZEN", "DRUNK", "DYING", "EARTH", "EIGHT", "ENJOY", "EQUIP", "EVICT", "FIRST", "FJORD", "FOLKS", "FRUIT", "FUDGE", "GANEV", "GHOUL", "GNOME", "GRAVE", "GYOZA", "HAVOC", "HERTZ", "HINDU", "HOCUS", "HYDRA", "IAMBS", "IMAGE", "INDEX", "ITCHY", "IVORY",
     "JABOT", "JERKY", "JINGO", "JOULE", "JUMBO", "KANJI", "KENDO", "KLUTZ", "KNOWS", "KOMBU", "LATEX", "LEFTY", "LOTUS", "LUCID", "LYMPH", "MAJOR", "MEANT", "MIXED", "MOTIF", "MYTHS", "NAIVE", "NDUJA", "NEXUS", "NOWAY", "NURSE", "OGHAM", "OKAPI", "OMEGA", "OPERA", "OVALS", "PHONE", "PIOUS", "PLANK", "PSALM", "PROXY", "QAIDS", "QUASI", "QUBIT", "QUEYS", "QUOTH", "RADIX", "REHAB", "RHYME", "RIGHT", "ROUND", "SMOKE", "SNAFU", "SQUAB", "STRAW", "SWIFT",
     "TABLE", "THROW", "TOPAZ", "TRANQ", "TWICE", "UKASE", "ULTRA", "UMIAQ", "UNHIP", "UPSET", "VAGUS", "VENOM", "VIEWS", "VODKA", "VOZDH", "WALTZ", "WEIRD", "WHIRL", "WIDTH", "WRONG", "XENIA", "XERIC", "XRAYS", "XYLIC", "XYSTI", "YACHT", "YETIS", "YIELD", "YOGIS", "YUPON", "ZARFS", "ZEROS", "ZILCH", "ZLOTY", "ZYMES"};
@@ -29,30 +29,49 @@ public class KeypassScript : MonoBehaviour {
     {
         moduleID = ++moduleIDCounter;
         lcds[0].material = io[1];
+    }
+
+    private void Start()
+    {
         ans = fives.PickRandom();
         string[] p = new string[0];
+        string[][] col = new string[4][];
+        for (int i = 0; i < 4; i++) 
+            col[i] = fours.Where(x => x.Contains(ans[i].ToString())).ToArray().Shuffle().ToArray();
+        int[] t = new int[4];
         while (p.Length < 1)
         {
             for (int i = 0; i < 4; i++)
             {
-                string f = fours.Where(x => x.Contains(ans[i].ToString())).PickRandom();
+                string f = col[i][t[i]];
                 for (int j = 0; j < 4; j++)
                     keypad[i][j] = f[j].ToString();
             }
             List<char> a = new List<char> { };
-            for(int i = 1; i < 256; i++)
+            for(int i = 0; i < 256; i++)
             {
                 int[] it = new int[4] { i / 64, (i / 16) % 4, (i / 4) % 4, i % 4 };
                 string c = "";
                 for (int j = 0; j < 4; j++)
                     c += keypad[j][it[j]];
                 for (int j = 0; j < 130; j++)
-                    if (fives[j].Take(4).ToString() == c)                    
+                    if (fives[j].Substring(0, 4) == c && fives[j] != ans)                    
                         a.Add(fives[j][4]);
                 if (a.Contains(ans[4]))
                     break;
             }
             p = fours.Where(x => x.Contains(ans[4].ToString()) && x.All(c => !a.Contains(c))).ToArray();
+            t[3]++;
+            for (int i = 3; i >= 1; i--)
+            {
+                if (t[i] > col[i].Length)
+                {
+                    t[i] = 0;
+                    t[i - 1]++;
+                }
+            }
+            if (t[0] > col[0].Length)
+                Start();
         }
         string last = p.PickRandom();
         for (int i = 0; i < 4; i++)
@@ -100,7 +119,7 @@ public class KeypassScript : MonoBehaviour {
             break;
         skip:;
             if (i >= dpair.Count() - 1)
-                Awake();
+                Start();
         }
         for(int i = 0; i < 5; i++)
             for(int j = 0; j < 2; j++)

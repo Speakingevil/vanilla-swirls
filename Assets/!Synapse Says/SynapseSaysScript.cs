@@ -107,209 +107,391 @@ public class SynapseSaysScript : MonoBehaviour {
             Debug.LogFormat("[Synapse Says #{0}] The sequence of flashes is: {1}", moduleID, string.Join(", ", Enumerable.Range(0, 4).Select(x => collog[seq[stage, x, 1]]).ToArray()));
             Debug.LogFormat("[Synapse Says #{0}] The display is {1}.", moduleID, p + 1);
             int a = 0;
+            int rule = 0;
             switch (4 * s + p)
             {
                 default:
                     if (seq[0, 3, 0] == 3)
                         a = seq[0, 0, 0];
                     else if (seq[0, 0, 1] == 3)
+                    {
+                        rule = 1;
                         a = 2;
+                    }
                     else if (Enumerable.Range(0, 4).All(x => seq[0, x, 1] != 1))
+                    {
+                        rule = 2;
                         a = seq[0, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = 0;
+                    }
                     break;
                 case 1:
                     if (Enumerable.Range(0, 4).Count(x => seq[0, x, 1] == 0) > 1)
                         a = 3;
                     else if (Enumerable.Range(0, 4).All(x => seq[0, x, 0] != 1))
+                    {
+                        rule = 1;
                         a = 1;
+                    }
                     else if (seq[0, 0, 1] == 2)
+                    {
+                        rule = 2;
                         a = seq[0, 2, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 1, 0];
+                    }
                     break;
                 case 2:
                     if (Enumerable.Range(0, 4).Select(x => seq[0, x, 0]).Distinct().Count() > 3)
                         a = 0;
                     else if (seq[0, 0, 0] == seq[0, 3, 0])
+                    {
+                        rule = 1;
                         a = seq[0, 2, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[0, x, 1] == 2) == 1)
+                    {
+                        rule = 2;
                         a = 3;
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 3, 0];
+                    }
                     break;
                 case 3:
                     if (seq[0, 0, 1] == 0)
                         a = 1;
                     else if (Enumerable.Range(0, 3).Any(x => seq[0, x, 0] == seq[0, x + 1, 0]))
+                    {
+                        rule = 1;
                         a = seq[0, 3, 0];
+                    }
                     else if (seq[0, 2, 0] == 1)
+                    {
+                        rule = 2;
                         a = seq[0, 0, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = 2;
+                    }
                     break;
                 case 4:
                     if (seq[1, 1, 0] < seq[1, 2, 0])
                         a = seq[0, 0, 0];
                     else if (Enumerable.Range(0, 4).All(x => seq[1, x, 0] != 3))
+                    {
+                        rule = 1;
                         a = seq[0, 3, 0];
+                    }
                     else if (seq[1, 0, 0] == seq[1, 2, 0])
+                    {
+                        rule = 2;
                         a = 0;
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[1, 3, 0];
+                    }
                     break;
                 case 5:
                     if (seq[1, 2, 0] == seq[1, 3, 0])
                         a = 3;
                     else if (Enumerable.Range(0, 4).All(x => seq[1, x, 1] != 0))
+                    {
+                        rule = 1;
                         a = seq[0, 1, 0];
+                    }
                     else if (seq[1, 0, 0] == 1)
+                    {
+                        rule = 2;
                         a = seq[1, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 2, 0];
+                    }
                     break;
                 case 6:
                     if (Enumerable.Range(0, 3).Any(x => (seq[1, x, 1] == 1 && seq[1, x + 1, 1] == 3) || (seq[1, x, 1] == 3 && seq[1, x + 1, 1] == 1)))
                         a = seq[1, 0, 0];
                     else if (Enumerable.Range(0, 4).Count(x => seq[1, x, 0] == 0) == 1)
+                    {
+                        rule = 1;
                         a = seq[0, 3, 0];
+                    }
                     else if (Enumerable.Range(0, 4).All(x => seq[1, x, 1] != 2))
+                    {
+                        rule = 2;
                         a = seq[0, 2, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = 2;
+                    }
                     break;
                 case 7:
                     if (Enumerable.Range(0, 4).Count(x => seq[1, x, 1] == 1) > 1)
-                        a = seq[1, 0, 0];
+                        a = seq[0, 1, 0];
                     else if (seq[1, 3, 0] == 2)
+                    {
+                        rule = 1;
                         a = seq[0, 0, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[1, x, 0] == 1) == 1)
-                        a = seq[0, 2, 0];
+                    {
+                        rule = 2;
+                        a = seq[1, 2, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = 1;
+                    }
                     break;
                 case 8:
                     if (seq[2, 1, 0] == 0)
                         a = seq[0, 1, 0];
                     else if (barrange[0] > seq[2, 0, 0])
+                    {
+                        rule = 1;
                         a = seq[1, 3, 0];
+                    }
                     else if (Enumerable.Range(0, 3).Any(x => (seq[2, x, 1] == 2 && seq[2, x + 1, 1] == 3) || (seq[2, x, 1] == 3 && seq[2, x + 1, 1] == 2)))
+                    {
+                        rule = 2;
                         a = 0;
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[2, 2, 0];
+                    }
                     break;
                 case 9:
-                    if (seq[2, 1, 0] == 3)
+                    if (seq[2, 1, 1] == 3)
                         a = seq[2, 0, 0];
                     else if (Enumerable.Range(0, 4).All(x => seq[2, x, 0] != 0))
+                    {
+                        rule = 1;
                         a = seq[0, 2, 0];
+                    }
                     else if (Enumerable.Range(0, 3).Any(x => Mathf.Abs(seq[2, x, 0] - seq[2, x + 1, 0]) == 1))
+                    {
+                        rule = 2;
                         a = seq[1, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = 3;
+                    }
                     break;
                 case 10:
                     if (seq[2, 3, 0] == seq[2, 1, 0])
                         a = seq[1, 2, 0];
-                    else if (Enumerable.Range(0, 4).Count(x => seq[2, x, 1] == 1) > 1)
+                    else if (Enumerable.Range(0, 4).Count(x => seq[2, x, 1] == 2) > 1)
+                    {
+                        rule = 1;
                         a = 1;
+                    }
                     else if (seq[2, 3, 0] == 0)
+                    {
+                        rule = 2;
                         a = seq[2, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 0, 0];
+                    }
                     break;
                 case 11:
                     if (seq[2, 0, 0] == 3)
                         a = 2;
                     else if (Enumerable.Range(0, 4).Count(x => seq[2, x, 1] < 2) == 2)
+                    {
+                        rule = 1;
                         a = seq[2, 3, 0];
+                    }
                     else if (seq[2, 3, 0] > seq[2, 0, 0])
+                    {
+                        rule = 2;
                         a = seq[0, 3, 0];
+                    }
                     else
-                        a = seq[1, 1, 0];
+                    {
+                        rule = 3;
+                        a = seq[1, 0, 0];
+                    }
                     break;
                 case 12:
                     if (Enumerable.Range(0, 4).Count(x => seq[3, x, 1] == 1) > 1)
                         a = seq[1, 2, 0];
                     else if (Enumerable.Range(0, 3).Any(x => (seq[3, x, 1] == 0 && seq[3, x + 1, 1] == 3) || (seq[3, x, 1] == 3 && seq[3, x + 1, 1] == 3)))
+                    {
+                        rule = 1;
                         a = seq[2, 0, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[3, x, 0] == 0) == 1)
+                    {
+                        rule = 2;
                         a = seq[0, 3, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[3, 0, 0];
+                    }
                     break;
                 case 13:
                     if (Enumerable.Range(0, 4).Select(x => seq[3, x, 0]).Distinct().Count() == 2)
                         a = seq[0, 3, 0];
                     else if (seq[3, 0, 1] == 0)
+                    {
+                        rule = 1;
                         a = seq[3, 1, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[3, x, 1] == 1 || seq[3, x, 1] == 2) == 2)
+                    {
+                        rule = 2;
                         a = seq[1, 0, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[2, 2, 0];
+                    }
                     break;
                 case 14:
                     if (Enumerable.Range(0, 4).All(x => seq[3, x, 1] != ans[0]))
                         a = seq[2, 2, 0];
                     else if (Enumerable.Range(0, 4).Count(x => seq[3, x, 0] == 1) == 1)
+                    {
+                        rule = 1;
                         a = seq[1, 1, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[3, x, 1] == 3) > Enumerable.Range(0, 4).Count(x => seq[3, x, 1] == 2))
+                    {
+                        rule = 2;
                         a = seq[3, 3, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 0, 0];
+                    }
                     break;
                 case 15:
                     if (Enumerable.Range(0, 4).Count(x => seq[3, x, 0] == 1) > Enumerable.Range(0, 4).Count(x => seq[3, x, 0] == 0))
                         a = seq[3, 0, 0];
                     else if (seq[3, 3, 1] == 3)
+                    {
+                        rule = 1;
                         a = seq[1, 2, 0];
+                    }
                     else if (Enumerable.Range(0, 3).Any(x => (seq[3, x, 1] == 0 && seq[3, x + 1, 1] == 2) || (seq[3, x, 1] == 2 && seq[3, x + 1, 1] == 3)))
+                    {
+                        rule = 2;
                         a = seq[2, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 3, 0];
+                    }
                     break;
                 case 16:
                     if (Enumerable.Range(0, 4).Count(x => seq[4, x, 1] % 2 == 1) == 2)
                         a = seq[0, 1, 0];
                     else if (Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 3) > Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 2))
+                    {
+                        rule = 1;
                         a = seq[2, 3, 0];
-                    else if (Enumerable.Range(0, 4).All(x => seq[4, x, 0] != ans[2]))
+                    }
+                    else if (Enumerable.Range(0, 4).All(x => seq[4, x, 1] != ans[2]))
+                    {
+                        rule = 2;
                         a = seq[3, 0, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[1, 2, 0];
+                    }
                     break;
                 case 17:
                     if (Enumerable.Range(0, 4).Count(x => seq[4, x, 1] == 0) > Enumerable.Range(0, 4).Count(x => seq[4, x, 1] == 3))
                         a = seq[2, 0, 0];
-                    else if (Enumerable.Range(0, 4).All(x => seq[4, x, 0] != ans[3]))
+                    else if (Enumerable.Range(0, 4).All(x => seq[4, x, 1] != ans[3]))
+                    {
+                        rule = 1;
                         a = seq[0, 1, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 3) > 1)
+                    {
+                        rule = 2;
                         a = seq[1, 2, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[3, 3, 0];
+                    }
                     break;
                 case 18:
-                    if (Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 1) > Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 4))
+                    if (Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 1) > Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 3))
                         a = seq[1, 3, 0];
                     else if (Enumerable.Range(0, 4).All(x => seq[4, x, 1] != 3))
+                    {
+                        rule = 1;
                         a = seq[3, 0, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[4, x, 1] % 2 == 0) == 2)
+                    {
+                        rule = 2;
                         a = seq[2, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[0, 3, 0];
+                    }
                     break;
                 case 19:
-                    if (Enumerable.Range(0, 4).All(x => seq[4, x, 0] != ans[1]))
+                    if (Enumerable.Range(0, 4).All(x => seq[4, x, 1] != ans[1]))
                         a = seq[3, 2, 0];
-                    else if (Enumerable.Range(0, 3).Any(x => (seq[4, x, 0] == 0 && seq[4, x + 1, 1] == 3) || (seq[4, x, 1] == 3 && seq[4, x + 1, 1] == 0)))
+                    else if (Enumerable.Range(0, 3).Any(x => (seq[4, x, 0] == 0 && seq[4, x + 1, 0] == 3) || (seq[4, x, 0] == 3 && seq[4, x + 1, 0] == 0)))
+                    {
+                        rule = 1;
                         a = seq[1, 2, 0];
+                    }
                     else if (Enumerable.Range(0, 4).Count(x => seq[4, x, 0] == 2) > 1)
+                    {
+                        rule = 2;
                         a = seq[0, 1, 0];
+                    }
                     else
+                    {
+                        rule = 3;
                         a = seq[2, 0, 0];
+                    }
                     break;
             }
+            Debug.LogFormat("[Synapse Says #{0}] The {1} rule applies.", moduleID, new string[] { "first", "second", "third", "fourth"}[rule]);
             ans.Add(barrange[a]);
             if (stage > 0)
                 Debug.LogFormat("[Synapse Says #{0}] Press the buttons: {1}", moduleID, string.Join(", ", ans.Select(x => collog[x]).ToArray()));
@@ -382,14 +564,17 @@ public class SynapseSaysScript : MonoBehaviour {
         lights[i].enabled = true;
         yield return new WaitForSeconds(0.5f);
         lights[i].enabled = false;
-        if (e == 6)
+        if (e >= 6)
         {
             while (e > 0)
             {
                 e -= Time.deltaTime;
                 yield return null;
                 if (!pressable)
+                {
+                    e = 6;
                     yield break;
+                }
             }
             index = 0;
             StartCoroutine("Sequence");

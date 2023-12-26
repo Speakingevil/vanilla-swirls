@@ -8,6 +8,7 @@ public class SimonStrandsScript : MonoBehaviour {
 
     public KMAudio Audio;
     public KMBombModule module;
+    public KMSelectable modSelect;
     public KMBombInfo info;
     public List<KMSelectable> buttons;
     public Renderer bulb;
@@ -28,7 +29,7 @@ public class SimonStrandsScript : MonoBehaviour {
     private List<int> ans = new List<int> { };
     private int stage = 1;
     private int index;
-    private bool play;
+    private bool[] play = new bool[2];
     private bool movetick;
     private float e = 6;
     private bool pressable;
@@ -41,6 +42,14 @@ public class SimonStrandsScript : MonoBehaviour {
     private void Start()
     {
         moduleID = ++moduleIDCounter;
+        float scale = module.transform.lossyScale.x;
+        foreach (Light l in flash)
+            l.range *= scale;
+        modSelect.OnInteract = delegate () { if (!play[0]) { Activate(); play[0] = true; } return true; };
+    }
+
+    private void Activate()
+    {
         Generate(1);
         foreach(KMSelectable button in buttons)
         {
@@ -74,7 +83,7 @@ public class SimonStrandsScript : MonoBehaviour {
                             }
                             break;
                         default:
-                            play = true;
+                            play[1] = true;
                             Audio.PlaySoundAtTransform("Beep" + b, button.transform);
                             StartCoroutine(Press(b + 1));
                             if(b == ans[index])
@@ -116,6 +125,7 @@ public class SimonStrandsScript : MonoBehaviour {
                             {
                                 Debug.LogFormat("[Simon Strands #{0}] Buttons pressed: {1}.", moduleID, presslog);
                                 index = 0;
+                                e = 6;
                                 module.HandleStrike();
                             }
                             break;
@@ -170,7 +180,7 @@ public class SimonStrandsScript : MonoBehaviour {
             for (int i = 0; i < seq.Count(); i++)
             {
                 flash[seq[i] + 1].enabled = true;
-                if (play)
+                if (play[1])
                     Audio.PlaySoundAtTransform("Beep" + seq[i], buttons[seq[i]].transform);
                 yield return new WaitForSeconds(0.5f);
                 flash[seq[i] + 1].enabled = false;
@@ -187,14 +197,17 @@ public class SimonStrandsScript : MonoBehaviour {
         flash[k].enabled = true;
         yield return new WaitForSeconds(0.5f);
         flash[k].enabled = false;
-        if (e == 6)
+        if (e >= 6)
         {
             while (e > 0)
             {
                 e -= Time.deltaTime;
                 yield return null;
                 if (!pressable)
+                {
+                    e = 6;
                     yield break;
+                }
             }
             index = 0;
             if(!moduleSolved)
@@ -233,9 +246,9 @@ public class SimonStrandsScript : MonoBehaviour {
             t = 4.547f - (9.094f * freqs[freqselect[1]] / 100);
             float d = Time.deltaTime;
             if (pointer.localPosition.x < t)
-                pointer.localPosition += new Vector3(d * 3, 0.183f, 0);
+                pointer.localPosition += new Vector3(d * 3, 0, 0);
             else
-                pointer.localPosition -= new Vector3(d * 3, 0.183f, 0);
+                pointer.localPosition -= new Vector3(d * 3, 0, 0);
             yield return null;
         }
         pointer.localPosition = new Vector3(t, 0.183f, 0);

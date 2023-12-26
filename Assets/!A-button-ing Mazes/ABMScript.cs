@@ -382,7 +382,7 @@ public class ABMScript : MonoBehaviour {
                             break;
                         }
                     yield return null;
-                    while ((int)info.GetTime() % 10 != d && ((int)info.GetTime() % 60) / 10 != d)
+                    while ((int)info.GetTime() % 10 != d && (((int)info.GetTime() % 60) / 10 != d || (int)info.GetTime() % 10 < 6))
                         yield return null;
                     buttons[h].OnInteractEnded();
                 }

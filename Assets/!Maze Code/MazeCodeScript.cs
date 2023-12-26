@@ -244,6 +244,12 @@ public class MazeCodeScript : MonoBehaviour {
         }
     }
 
+    private void Start()
+    {
+        float scale = module.transform.lossyScale.x;
+        flash.range *= scale;
+    }
+
     private void Generate()
     {
         for (int i = 0; i < 36; i++)
@@ -392,9 +398,9 @@ public class MazeCodeScript : MonoBehaviour {
             t = 4.547f - (9.094f * hz / 12960);
             float d = Time.deltaTime;
             if (pointer.localPosition.x < t)
-                pointer.localPosition += new Vector3(d * 3, 0.183f, 0);
+                pointer.localPosition += new Vector3(d * 3, 0, 0);
             else
-                pointer.localPosition -= new Vector3(d * 3, 0.183f, 0);
+                pointer.localPosition -= new Vector3(d * 3, 0, 0);
             yield return null;
         }
         pointer.localPosition = new Vector3(t, 0.183f, 0);

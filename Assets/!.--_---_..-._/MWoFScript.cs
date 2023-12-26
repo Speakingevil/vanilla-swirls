@@ -122,7 +122,7 @@ public class MWoFScript : MonoBehaviour {
                 if (snippet.Count(x => x == '-') == shift[0])
                 {
                     tick = true;
-                    if (order[i] < p - 1)
+                    if (order[i] < p)
                         ans[0] = ans[0].Insert(order[i] + shift[0] + shift[1], "|");
                     if (order[i] > 0)
                         ans[0] = ans[0].Insert(order[i], "|");
@@ -161,6 +161,7 @@ public class MWoFScript : MonoBehaviour {
                 }
                 ans[0] = string.Join("|", an);
             }
+            Debug.Log(ans[0]);
             while (ans[0].Count(x => x == '|') > (tick ? 5 : 4))
             {
                 List<string> an = ans[0].Split('|').ToList();
@@ -197,7 +198,6 @@ public class MWoFScript : MonoBehaviour {
                     }
                 }
             }
-            Debug.Log(ans[0]);
             ans[0] = ans[0].Replace("|", "");
             Debug.LogFormat("[.--/---/..-. #{0}] The label of the {1}-{2} button is \"{3}\"", moduleID, new string[] { "top", "middle", "bottom"}[eye / 2], eye % 2 == 0 ? "left" : "right", fragments[eye]);
             Debug.LogFormat("[.--/---/..-. #{0}] The target word is {1}.", moduleID, a);

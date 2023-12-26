@@ -298,6 +298,11 @@ public class ButtonplicatedWiresScript : MonoBehaviour {
             {
                 conds[b] /= 8;
                 Debug.LogFormat("[Buttonplicated Wires #{0}] Button {1} release condition met.", moduleID, b + 1);
+                if (conds.All(x => x == 0))
+                {
+                    module.HandlePass();
+                    moduleSolved = true;
+                }
             }
             else
             {
@@ -410,7 +415,7 @@ public class ButtonplicatedWiresScript : MonoBehaviour {
                     yield return "sendtochaterror!f No buttons are held.";
                     yield break;
                 }
-                if (commands[1][commands[1].Length - 3] != ':')
+                if (commands[1].Length < 3 || commands[1][commands[1].Length - 3] != ':')
                 {
                     yield return "sendtochaterror!f Invalid timer format.";
                     yield break;
@@ -427,7 +432,7 @@ public class ButtonplicatedWiresScript : MonoBehaviour {
                         Debug.Log("Releasing button with " + d.ToString() + " seconds remaining.");
                         yield return null;
                         while ((int)info.GetTime() != d)
-                            yield return null;
+                            yield return "trycancel";
                         buttons[tphold].OnInteractEnded();
                     }
                 }
