@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -54,9 +54,31 @@ public class PasswordButtonsScript : MonoBehaviour
         foreach (Light l in leds)
             l.range *= scale;
         word = words.PickRandom();
+        List<int> delselect = new List<int> { };
+        do
+        {
+            delselect.Clear();
+            for (int i = 0; i < words.Count() - 1; i++)
+                for (int j = 1; j < 5; j++)
+                    delselect.Add(j);
+            delselect = delselect.Shuffle().Take(words.Count()).ToList();
+            for (int i = 0; i < words.Count(); i++)
+            {
+                if (words[i] == word)
+                    continue;
+                while ("AEIOU".Contains(words[i][delselect[i]]) || words[i][delselect[i]] == word[delselect[i]])
+                    delselect[i] = Random.Range(0, 5);
+            }
+        } while (delselect.Distinct().Count() < 5 && Enumerable.Range(0, 5).Select(x => delselect.Where(y => y != x).Count()).Any(x => x < 5));
         for (int i = 0; i < 5; i++)
         {
             letterlists[i] = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            for (int j = 0; j < letterlists[i].Count(); j++)
+                if (!Enumerable.Range(0, words.Count()).Select(x => words[x][i].ToString()).ToArray().Contains(letterlists[i][j]))
+                {
+                    letterlists[i].RemoveAt(j);
+                    j--;
+                }
             lselect[i, 0] = word[i].ToString();
             letterlists[i].Remove(word[i].ToString());
             displets[i] = Random.Range(0, 5);
@@ -64,50 +86,21 @@ public class PasswordButtonsScript : MonoBehaviour
             brends[i].material = bmats[bcols[i]];
         }
         Debug.LogFormat("[Password Buttons #{0}] The buttons have the colours: {1}.", moduleID, string.Join(", ", bcols.Select(x => new string[] { "Red", "Yellow", "Blue", "White", "Black" }[x]).ToArray()));
+        for (int i = 0; i < words.Count(); i++)
+        {
+            int d = delselect[i];
+            string l = words[i][d].ToString();
+            if (Enumerable.Range(0, 5).All(x => letterlists[x].Contains(words[i][x].ToString())))
+                letterlists[d].Remove(l);
+        }
         while (displets.All(x => x == 0))
             for (int i = 0; i < 5; i++)
                 displets[i] = Random.Range(0, 5);
-        for (int i = 1; i < 5; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-            repeat:;
-                string let = letterlists[j].PickRandom();
-                letterlists[j].Remove(let);
-                lselect[j, i] = let;
-                string[] test = new string[5];
-                test[j] = let;
-                for (int k = 0; k < i + 1; k++)
-                {
-                    if (j > 0)
-                        test[0] = lselect[0, k];
-                    for (int m = 0; m < (j >= i ? i : i + 1); m++)
-                    {
-                        if (j != 1)
-                            test[1] = lselect[1, m];
-                        for (int n = 0; n < (j >= i ? i : i + 1); n++)
-                        {
-                            if (j != 2)
-                                test[2] = lselect[2, n];
-                            for (int p = 0; p < (j >= i ? i : i + 1); p++)
-                            {
-                                if (j != 3)
-                                    test[3] = lselect[3, p];
-                                for (int q = 0; q < (j >= i ? i : i + 1); q++)
-                                {
-                                    if (j < 4)
-                                        test[4] = lselect[4, q];
-                                    if (words.Contains(string.Join("", test)))
-                                        goto repeat;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
         for (int i = 0; i < 5; i++)
         {
+            letterlists[i] = letterlists[i].Shuffle().ToList();
+            for (int j = 1; j < 5; j++)
+                lselect[i, j] = letterlists[i][j - 1];
             disps[i].text = lselect[i, displets[i]];
             Debug.LogFormat("[Password Buttons #{0}] The {1} display shows the letters: {2}.", moduleID, new string[] { "first", "second", "third", "fourth", "fifth" }[i], string.Join(", ", Enumerable.Range(0, 5).Select(x => lselect[i, (x + displets[i]) % 5]).ToArray()));
         }
@@ -226,6 +219,8 @@ public class PasswordButtonsScript : MonoBehaviour
                     if (lockrel)
                     {
                         lockrel = false;
+                        hold = false;
+                        struckhold = false;
                         Debug.LogFormat("[Password Buttons #{0}] Locked button released. Display unchanged.", moduleID);
                         return;
                     }
