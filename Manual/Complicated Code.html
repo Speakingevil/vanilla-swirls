@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Complicated Code — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/ktane-utils.js"></script>
+    <style>
+        table {
+           margin-right: 5px;
+           margin-bottom: 5px;         
+        }
+        img {
+           width:95%;
+           margin:auto;
+           display:block;
+        }
+        .hstack {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            justify-content: center;
+        }
+        .legend th{
+            border:none;
+        }
+        .k{
+            background-color:#000000;
+        }
+        .w{
+            background-color:#b0b0b0;
+        }
+        table.morse{
+            width: 46.4%
+        }
+        table.morse th{
+           font-size:20px;
+           border:none;
+        }
+        table.morse td{
+           border:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-03">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Complicated Code</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Maze Code.svg" class="diagram">
+                <h2>On the Subject of Complicated Code</h2>
+                <p class="flavour-text">This antiquated form of naval communication isn't like the others. Sometimes it alternates colours, that makes it completely different. At least its genuine Morse code. Maybe too genuine...</p>       
+            <ol><li>Interpret the signal from the flashing light using the Morse Code chart to identify the word being spelled.</li>
+            <li>The signal will loop, with a long pause between repeats.</li>
+            <li>For <strong>each</strong> signal, use the Venn diagram below to decide whether or not to press the transmit (TX) button.</li>
+            <li>If <strong>no transmissions</strong> can be made, take N to be the sum of the numeric serial number digits modulo 6, plus one.<br>Transmit the Nth lowest frequency.</li></ol>
+            <img src="img/Complicated Code/bigvenn.svg">            
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 2</div>
+        </div>
+         <div class="page page-bg-04">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Complicated Code</span>
+            </div>
+            <div class="page-content">
+            <table class = "legend" style="width:100%">
+            <tr><th><table class = "legend">
+            <tr><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th></tr>
+            </table></th><th>The transmitted word belongs to the list below</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th></tr>
+            </table></th><th>The light flashes blue</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th></tr>
+            </table></th><th>The light flashes red</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th></tr>
+            </table></th><th>The transmitted word contains any letter of the serial number</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th></tr>
+            </table></th><th>The last digit of the serial number appears after the decimal point of the frequency</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "w"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "w"></th></tr>
+            </table></th><th>The frequency is a multiple of 3 KHz</th></tr>
+            <tr><th><table class = "legend">
+            <tr><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "w"></th><th class = "w"></th><th class = "k"></th><th class = "w"></th><th class = "w"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th><th class = "k"></th></tr>
+            </table></th><th>The transmitted word is five letters long</th></tr>            
+            </table>
+            <table style="width:100%">
+            <tr><th>acquit</th><th>apply</th><th>aztec</th><th>bistro</th><th>corky</th><th>draugr</th></tr>
+            <tr><th>forget</th><th>fuzzy</th><th>inches</th><th>inject</th><th>joust</th><th>kiosk</th></tr>
+            <tr><th>knight</th><th>lovers</th><th>nought</th><th>player</th><th>quince</th><th>rustic</th></tr>
+            <tr><th>shroud</th><th>sixty</th><th>squid</th><th>stormy</th><th>sword</th><th>tennis</th></tr>
+            <tr><th>tuxedo</th><th>vector</th><th>whose</th><th>wizard</th><th>yard</th><th>zenith</th></tr>
+            </table>
+            <div class = "hstack">
+            <table style="width:48%">
+            <tr><th>T</th><th>Transmit the signal</th></tr>
+            <tr><th>X</th><th>Do not transmit the signal</th></tr>
+            <tr><th>F</th><th>Transmit the signal if the first numeric digit of the serial number is odd</th></tr>
+            <tr><th>P</th><th>Transmit the signal if there is a PS/2 port</th></tr>
+            <tr><th>B</th><th>Transmit the signal if there is an odd number of batteries</th></tr>
+            <tr><th>O</th><th>Transmit the signal if there is a lit indicator</th></tr>
+            <tr><th>I</th><th>Transmit the signal if an indicator label contains the last letter of the transmitted word</th></tr>
+            <tr><th>Z</th><th>Transmit the signal if its frequency is a multiple of 5 KHz</tH></tr>
+            </table>
+            <table class = "morse">
+            <tr><th>How to Interpret</th></tr><tr class="morse-interpret"><td style="text-align: left">
+            <p>1. A short flash represents a dot.</p>
+            <p>2. A long flash represents a dash.</p>
+            <p>3. There is a long gap between letters.</p>
+            <p>4. There is a very long gap before the word repeats.</p></td></tr>
+            <tr><th><img id="morseSignalImg" src="img/Morse Code/morse-signals.svg"></th></tr>
+            </table>
+            </div>
+            </div>           
+            <div class="page-footer relative-footer">Page 2 of 2</div>
+        </div>
+    </div>
+</body>
+</html>

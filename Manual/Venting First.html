@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Venting First? — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/ktane-utils.js"></script>
+    <style>
+        .hstack {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            justify-content: center;
+        }
+        .eye{
+            width:18%;
+            font-size:15px;
+            margin-right:5px;
+            margin-top:4px;
+        }
+        li{
+            margin-top:35px;
+            margin-bottom:35px;
+        }
+        .k{
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .s{
+            font-size: 7px;
+        }
+        .g{
+            color: #00b538;
+        }
+        .r{
+            color: #ff0000;
+        }
+        th{
+            padding:0px;
+            width:30px;
+            height:16px;
+            font-size:13px;
+        }
+        img{
+            width: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-03">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Venting First?</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Venting First.svg" class="diagram">
+                <h2>On the Subject of Venting First</h2>
+                <p class="flavour-text">This contraption is hard work! Words only complicate matters.<br><span style="color:#ffffff">It's safe to mention venting now, right?</span></p>       
+            <ol><li>Read the display and use step 1 to determine which word to read.</li>
+            <li>Using this word, determine whether to push <em>Y</em>es or <em>N</em>o.</li>
+            <li>Striking the module clears its memory.</li></ol>
+            <h3>Step 1:</h3>
+            <p>Based on the display,<br>read the word at a particular position and proceed to step 2:</p>
+            <ol><li>If both previous words were in the positions of open eyes, read the word in the position of the closed eye.</li>
+            <li>If both previous words were in the positions of closed eyes, read the word in the position of the open eye.</li>
+            <li>Otherwise, read the word in the position of the open eye if the display's condition is true, and read the word in the position of the closed eye if the display's consition is false:</li>
+            <li>If the condition requires memory that the module hasn't yet generated, read the word in the position of the closed eye if the displayed word is green, and read the word in the position of the open eye if the displayed word is red.</li></ol>
+            </div>           
+            <div class="page-footer relative-footer">Page 1 of 3</div>
+        </div>
+        <div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Venting First?</span>
+            </div>
+            <div class="page-content">
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">ALLOW?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last word was green</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">PROHIBIT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Over 50% bomb time remains</span></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">ACTIVATE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">No strikes</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">CLOSE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Less than two strikes</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">END?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Less than five solves</span></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">WAIVE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two presses differ</span></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">ACCEPT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two words were same colour</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">INVOKE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two presses were the same</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">VENT GAS?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Always true</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">RUN?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Under ten minutes remain</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">REJECT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two word colours differ</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">TERMINATE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Over ten minutes elapsed</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">HALT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Over ten minutes remain</span></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">ABORT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">No was pressed last</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">START?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Five or more solves</span></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">GO?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last display was green</span></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">REPEAT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Yes was pressed last</span></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">PLAY?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">50% or more solves</span></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">INITIATE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Under ten minutes elapsed</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">PERMIT?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Even solves</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">BLOCK?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Odd solves</span></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">SKIP?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Less than 50% solves</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">DETONATE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Always false</span></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">APPROVE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two displays same colour</span></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">WRITE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last eye was open</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">CEASE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">One or more strikes</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">STOP?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last display was red</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">FORBID?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last two display colours differ</span></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            </table>
+            </div>
+            <div class = "hstack">
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">EXECUTE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Two or more strikes</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">CLEAR?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last eye was closed</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th><img src = "img/Who's On First/eye-icon.png"></th><th><img src = "img/Who's On First/ceye-icon.png"></th></tr>
+            <tr><th></th><th></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "r">DENY?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Last word was red</span></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            </table>
+            <table class = "eye"><tr><th colspan = 2 class = "k"><span class = "g">AUTHORISE?</span></th></tr>
+            <tr><th colspan = 2 class = "k"><span class = "s">Under 50% bomb time remains</span></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th></th></tr>
+            <tr><th></th><th><img src = "img/Who's On First/eye-icon.png"></th></tr>
+            <tr><th><img src = "img/Who's On First/ceye-icon.png"></th><th></th></tr>
+            </table>
+            </div>
+            </div>
+            <div class="page-footer relative-footer">Page 2 of 3</div>
+        </div>
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Venting First?</span>
+            </div>
+            <div class="page-content">
+            <h3>Step 2:</h3>
+            <p>Using the word from step 1, push Yes if the first displayed word that appears in its corresponding list is green, and push No if it is red:</p>
+            <table style = "margin:auto; font-size:19.5px; font-weight:bold">
+            <tr><td class = "k">"<span class = "g">YES</span>":</td><td><span class = "g">OKAY</span>, <span class = "r">NO</span>, <span class = "g">YEP</span>, <span class = "r">NIX</span>, <span class = "g">AHUH</span>, <span class = "r">NOPE</span>, <span class = "g">YUP</span>, <span class = "r">NAH</span>, <span class = "g">OK</span>, <span class = "r">NAW</span>, <span class = "g">YES</span></td>
+            <tr><td class = "k">"<span class = "r">NO</span>":</td><td><span class = "r">UHUH</span>, <span class = "g">AYE</span>, <span class = "r">NAH</span>, <span class = "g">YES</span>, <span class = "r">NOPE</span>, <span class = "g">YEP</span>, <span class = "r">NAW</span>, <span class = "g">OKAY</span>, <span class = "r">NAY</span>, <span class = "g">YEA</span>, <span class = "r">NO</span></td>
+            <tr><td class = "k">"<span class = "g">YUP</span>":</td><td><span class = "g">YES</span>, <span class = "r">NOPE</span>, <span class = "g">AYE</span>, <span class = "r">NIX</span>, <span class = "g">OKAY</span>, <span class = "r">NAY</span>, <span class = "g">AHUH</span>, <span class = "r">NOT</span>, <span class = "g">OK</span>, <span class = "r">NAH</span>, <span class = "g">YUP</span></td>
+            <tr><td class = "k">"<span class = "r">NOPE</span>":</td><td><span class = "r">NAW</span>, <span class = "g">AHUH</span>, <span class = "r">NIX</span>, <span class = "g">OK</span>, <span class = "r">NOT</span>, <span class = "g">OKAY</span>, <span class = "r">UHUH</span>, <span class = "g">YES</span>, <span class = "r">NA</span>, <span class = "g">YEAH</span>, <span class = "r">NOPE</span></td>
+            <tr><td class = "k">"<span class = "g">AHUH</span>":</td><td><span class = "g">YUP</span>, <span class = "r">NAY</span>, <span class = "g">YES</span>, <span class = "r">NAW</span>, <span class = "g">YEP</span>, <span class = "r">NA</span>, <span class = "g">OK</span>, <span class = "r">NOPE</span>, <span class = "g">YEAH</span>, <span class = "r">UHUH</span>, <span class = "g">AHUH</span></td>
+            <tr><td class = "k">"<span class = "r">UHUH</span>":</td><td><span class = "r">NA</span>, <span class = "g">OK</span>, <span class = "r">NAY</span>, <span class = "g">YEP</span>, <span class = "r">NAW</span>, <span class = "g">AYE</span>, <span class = "r">NO</span>, <span class = "g">YEAH</span>, <span class = "r">NOPE</span>, <span class = "g">YEA</span>, <span class = "r">UHUH</span></td>
+            <tr><td class = "k">"<span class = "g">OKAY</span>":</td><td><span class = "g">YES</span>, <span class = "r">NAH</span>, <span class = "g">YEAH</span>, <span class = "r">NIX</span>, <span class = "g">OK</span>, <span class = "r">NAY</span>, <span class = "g">AYE</span>, <span class = "r">NOT</span>, <span class = "g">YEP</span>, <span class = "r">UHUH</span>, <span class = "g">OKAY</span></td>
+            <tr><td class = "k">"<span class = "r">NIX</span>":</td><td><span class = "r">NOT</span>, <span class = "g">YEAH</span>, <span class = "r">UHUH</span>, <span class = "g">OKAY</span>, <span class = "r">NAY</span>, <span class = "g">OK</span>, <span class = "r">NA</span>, <span class = "g">YES</span>, <span class = "r">NOPE</span>, <span class = "g">YUP</span>, <span class = "r">NIX</span></td>
+            <tr><td class = "k">"<span class = "g">YEP</span>":</td><td><span class = "g">YEA</span>, <span class = "r">NOT</span>, <span class = "g">OKAY</span>, <span class = "r">UHUH</span>, <span class = "g">YEAH</span>, <span class = "r">NAH</span>, <span class = "g">YUP</span>, <span class = "r">NOPE</span>, <span class = "g">YES</span>, <span class = "r">NA</span>, <span class = "g">YEP</span></td>
+            <tr><td class = "k">"<span class = "r">NA</span>":</td><td><span class = "r">NIX</span>, <span class = "g">OKAY</span>, <span class = "r">NAY</span>, <span class = "g">YUP</span>, <span class = "r">NOPE</span>, <span class = "g">AYE</span>, <span class = "r">NOT</span>, <span class = "g">OK</span>, <span class = "r">NO</span>, <span class = "g">YEA</span>, <span class = "r">NA</span></td>
+            <tr><td class = "k">"<span class = "g">OK</span>":</td><td><span class = "g">OKAY</span>, <span class = "r">NAY</span>, <span class = "g">YUP</span>, <span class = "r">NAW</span>, <span class = "g">YEP</span>, <span class = "r">NO</span>, <span class = "g">YEAH</span>, <span class = "r">NA</span>, <span class = "g">AYE</span>, <span class = "r">UHUH</span>, <span class = "g">OK</span></td>
+            <tr><td class = "k">"<span class = "r">NOT</span>":</td><td><span class = "r">UHUH</span>, <span class = "g">AYE</span>, <span class = "r">NAW</span>, <span class = "g">YUP</span>, <span class = "r">NOPE</span>, <span class = "g">OK</span>, <span class = "r">NO</span>, <span class = "g">YEP</span>, <span class = "r">NAY</span>, <span class = "g">OKAY</span>, <span class = "r">NOT</span></td>
+            <tr><td class = "k">"<span class = "g">YEA</span>":</td><td><span class = "g">OK</span>, <span class = "r">NIX</span>, <span class = "g">AYE</span>, <span class = "r">NA</span>, <span class = "g">YES</span>, <span class = "r">UHUH</span>, <span class = "g">YUP</span>, <span class = "r">NAH</span>, <span class = "g">YEAH</span>, <span class = "r">NOT</span>, <span class = "g">YEA</span></td>
+            <tr><td class = "k">"<span class = "r">NAY</span>":</td><td><span class = "r">NAH</span>, <span class = "g">YUP</span>, <span class = "r">UHUH</span>, <span class = "g">YEA</span>, <span class = "r">NA</span>, <span class = "g">AYE</span>, <span class = "r">NAW</span>, <span class = "g">OKAY</span>, <span class = "r">NOPE</span>, <span class = "g">YES</span>, <span class = "r">NAY</span></td>
+            <tr><td class = "k">"<span class = "g">AYE</span>":</td><td><span class = "g">YEP</span>, <span class = "r">NAY</span>, <span class = "g">YEA</span>, <span class = "r">UHUH</span>, <span class = "g">OK</span>, <span class = "r">NOT</span>, <span class = "g">YUP</span>, <span class = "r">NA</span>, <span class = "g">OKAY</span>, <span class = "r">NIX</span>, <span class = "g">AYE</span></td>
+            <tr><td class = "k">"<span class = "r">NAW</span>":</td><td><span class = "r">NOT</span>, <span class = "g">YEP</span>, <span class = "r">NA</span>, <span class = "g">YES</span>, <span class = "r">UHUH</span>, <span class = "g">YEA</span>, <span class = "r">NOPE</span>, <span class = "g">AHUH</span>, <span class = "r">NAY</span>, <span class = "g">YUP</span>, <span class = "r">NAW</span></td>
+            <tr><td class = "k">"<span class = "g">YEAH</span>":</td><td><span class = "g">AYE</span>, <span class = "r">NOT</span>, <span class = "g">YEP</span>, <span class = "r">NO</span>, <span class = "g">YUP</span>, <span class = "r">NAW</span>, <span class = "g">AHUH</span>, <span class = "r">NIX</span>, <span class = "g">OKAY</span>, <span class = "r">NOPE</span>, <span class = "g">YEAH</span></td>
+            <tr><td class = "k">"<span class = "r">NAH</span>":</td><td><span class = "r">NA</span>, <span class = "g">YEA</span>, <span class = "r">NOPE</span>, <span class = "g">OK</span>, <span class = "r">UHUH</span>, <span class = "g">AYE</span>, <span class = "r">NIX</span>, <span class = "g">YES</span>, <span class = "r">NAY</span>, <span class = "g">YUP</span>, <span class = "r">NAH</span></td>
+            </table>
+            </div>
+            <div class="page-footer relative-footer">Page 3 of 3</div>
+        </div>
+    </div>
+</body>
+</html>
